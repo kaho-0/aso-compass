@@ -1,0 +1,109 @@
+
+:root {
+    --hiroblue:#0080ff;
+    --hatablue:#000080;
+    --black: #191E26;
+    --body: #78747A;
+    --bcground:#F4F6FA;
+    --LIKE:#BEE8FF;
+}
+
+body{
+    background-color: var(--bcground);
+    font-family:"Noto Sans JP", "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
+    color:var(--black);
+}
+.logo{
+    font-family: "Advent Pro", "Times New Roman", "YuMincho", "Hiragino Mincho ProN", "Yu Mincho", "MS PMincho", sans-serif;
+    font-weight: 700;
+    color: var(--black);
+    margin: 0 4px 4px 0;
+}
+.navbar-contents{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+.icon-explore{
+    margin-bottom: 4px;
+    font-size: 35px;
+    font-variation-settings: 'wght' 700 ,'opsz' 40;
+    color: var(--black);
+}
+.icon-density{
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--black);
+}
+
+.icon-account{
+    color: var(--black);
+    padding: 3px 8px;
+    margin: 0px 10px;
+    border: 1px solid var(--hiroblue);
+    border-radius: 20px;
+    transition: all 0.5s;
+}
+.icon-account:hover{
+    border: 2px solid var(--hiroblue);
+}
+.icon-account span{
+    font-size: 33px;
+}
+.icon-account p{
+    margin: 0px 5px 4px 0px;
+}
+
+.icon-help{
+    color: var(--black);
+    padding-top: 7px;
+}
+
+.navbar-toggler{
+    border: none;
+    padding: 4px 0px;
+}
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.nav-item{
+    padding: 15px 0 0 10px;
+    display: flex;
+    align-items: center;
+    color: var(--body);
+    transition: all 0.5s;
+}
+.nav-item:hover{
+    color: black;
+}
+.icon-nav{
+    padding-top: 3px;
+    text-decoration: none;
+    color: var(--body);
+}
+.nav-link{
+    padding: 8px;
+}
+/*Bootstrapライブラリ内のcss*/
+.offcanvas.offcanvas-end {
+    top: 68.39px;
+}
+.offcanvas-backdrop {
+    top: 68.39px;
+}
+.offcanvas-backdrop.show {
+    opacity: .2;
+}
+/* .offcanvas-backdrop.show {
+    opacity: 2;
+    background-color: rgba(0,0,0,0);
+    backdrop-filter: blur(2px);
+  }
+  .fade{
+    opacity: 0;
+    transition: none;
+  } */
