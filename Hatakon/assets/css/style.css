@@ -1,0 +1,15 @@
+
+:root {
+    --hiroblue:#0080ff;
+    --hatablue:#000080;
+    --black: #191E26;
+    --body: #78747A;
+    --bcground:#F4F6FA;
+    --LIKE:#BEE8FF;
+}
+
+body{
+    background-color: var(--bcground);
+    font-family:"Noto Sans JP", "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
+    color:var(--black);
+}
