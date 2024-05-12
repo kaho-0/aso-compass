@@ -13,8 +13,13 @@ body{
     color:var(--black);
 }
 
-.container{
-  margin-top: 60px;
+.section{
+  margin: 0 0 16px 0; 
+  padding-top: 120px;
+  position: sticky;
+  top: 0px; /* 画面上部からのオフセット */
+  background-color: var(--bcground);
+  z-index: 4;
 }
 
 .headline{
@@ -28,7 +33,7 @@ body{
   background-color: var(--hatablue);
   border-color: var(--hatablue);
   height: 1px;
-  margin-top: 0;
+  margin: 0;
 }
 
 .card-size{
