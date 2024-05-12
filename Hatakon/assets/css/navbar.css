@@ -13,6 +13,13 @@ body{
     font-family:"Noto Sans JP", "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
     color:var(--black);
 }
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 70px;
+    z-index: 5;
+}
 .logo{
     font-family: "Advent Pro", "Times New Roman", "YuMincho", "Hiragino Mincho ProN", "Yu Mincho", "MS PMincho", sans-serif;
     font-weight: 700;
@@ -75,10 +82,10 @@ body{
     display: flex;
     align-items: center;
     color: var(--body);
-    transition: all 0.5s;
+    /* border-left: 2px solid transparent; */
+    transition: all 0.7s;
 }
 .nav-item:hover{
-    color: black;
 }
 .icon-nav{
     padding-top: 3px;
