@@ -1,33 +1,32 @@
-/* スタイルを中央揃えにするための親コンテナのスタイル */  
-  
-  /* ボタンのスタイル */
-  .custom-button 
-    .custom-button {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      background-color: #f0f0f0; /* 背景色 */
-      border: 2px solid #ccc; /* ボーダー */
-      border-radius: 10px; /* 角を丸める */
-      padding: 10px 20px; /* パディング */
-      font-size: 16px; /* フォントサイズ */
-      cursor: pointer; /* カーソルをポインターに */
-      text-align: center; /* テキストを中央揃え */
-      text-decoration: none; /* テキスト装飾を無くす */
-      color: #333; /* テキストの色 */
-      transition: background-color 0.3s ease; /* ホバー時のトランジション */
-      width: 200px; /* ボタンの幅 */
-      margin: 10px auto; /* ボタン間の余白と中央揃え */
-    }
-    
-    .custom-button img {
-      max-width: 100px; /* 画像の最大幅 */
-      height: auto; /* 画像の高さを自動調整 */
-      margin-bottom: 10px; /* 画像とテキストの間の余白 */
-      padding-left: 50%;
-    }
-    
-    /* ホバー時のスタイル */
-    .custom-button:hover {
-      background-color: #e0e0e0; /* 背景色を少し濃くする */
-    }
+/* Category.css */
+
+/* 全体のスタイル */
+body {
+  font-family: 'Noto Sans JP', sans-serif; /* ページ全体のフォントを 'Noto Sans JP' に設定し、フォールバックとして sans-serif を使用します。 */
+  background-color: #f8f9fa; /* ページの背景色を薄いグレーに設定します。 */
+  color: #333; /* 文字色を濃いグレーに設定します。 */
+  margin: 0; /* ページ全体の余白をなくします。 */
+  padding: 0; /* ページ全体のパディングをなくします。 */
+}
+
+h1 {
+  font-family: 'Advent Pro', sans-serif; /* タイトルのフォントを 'Advent Pro' に設定し、フォールバックとして sans-serif を使用します。 */
+  text-align: left; /* タイトルを中央揃えにします。 */
+  margin: 20px 0; /* タイトルの上下に20pxの余白を設定します。 */
+  color: #007bff; /* タイトルの文字色を青に設定します。 */
+}
+
+/* ボタンのスタイル */
+  button {
+    display: inline-block; /* ボタンを横並びにする */
+    border: none; /* 枠線をなくす */
+    border-radius: 5px; /* 角丸をつける */
+    padding: 10px 15px; /* ボタンの内側の余白 */
+    margin: 5px; /* ボタン同士の余白 */
+    background-color: #96b97d; /* ボタンの背景色 */
+    color: white; /* ボタンの文字色 */
+    text-align: center; /* ボタンのテキストを中央揃えにする */
+    text-decoration: none; /* テキストに下線をつけない */
+    font-size: 15px; /* テキストのフォントサイズ */
+    cursor: pointer; /* マウスポインタを変更する */
+  }
