@@ -1,0 +1,66 @@
+:root {
+--hiroblue:#0080ff;
+--hatablue:#000080;
+--black: #191E26;
+--body: #78747A;
+--bcground:#F4F6FA;
+--LIKE:#BEE8FF;
+}
+
+body{
+background-color: var(--bcground);
+
+color:var(--black);
+}
+/* ログインフォーム全体 */
+.container {
+width: 550px;
+padding: 20px;
+margin-top: 70px;
+background-color: #ffffff;
+border: 1px solid #ccc;
+border-radius: 5px;
+}
+.input-field{
+    display: flex;
+}
+/* 入力フィールド */
+.form-floating {
+    margin-bottom: 20px;
+}
+
+/* 登録ボタン */
+.LoginButton {
+    width: 100%;
+    padding: 10px;
+    background-color: #000080;
+    color: #ffffff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.LoginButton:hover {
+    background-color: #316ed6;
+}
+
+/* 画像表示 */
+#preview {
+    width: 100px;
+    height: 100px;
+    border: 1px solid #000000;
+    border-radius: 10%;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+#preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.s{
+    width: 100%;
+    color: #868686;
+}
