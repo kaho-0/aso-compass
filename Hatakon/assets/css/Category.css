@@ -1,0 +1,32 @@
+/* Category.css */
+
+/* 全体のスタイル */
+body {
+  font-family: 'Noto Sans JP', sans-serif; /* ページ全体のフォントを 'Noto Sans JP' に設定し、フォールバックとして sans-serif を使用します。 */
+  background-color: #f8f9fa; /* ページの背景色を薄いグレーに設定します。 */
+  color: #333; /* 文字色を濃いグレーに設定します。 */
+  margin: 0; /* ページ全体の余白をなくします。 */
+  padding: 0; /* ページ全体のパディングをなくします。 */
+}
+
+h1 {
+  font-family: 'Advent Pro', sans-serif; /* タイトルのフォントを 'Advent Pro' に設定し、フォールバックとして sans-serif を使用します。 */
+  text-align: left; /* タイトルを中央揃えにします。 */
+  margin: 20px 0; /* タイトルの上下に20pxの余白を設定します。 */
+  color: #007bff; /* タイトルの文字色を青に設定します。 */
+}
+
+/* ボタンのスタイル */
+  button {
+    display: inline-block; /* ボタンを横並びにする */
+    border: none; /* 枠線をなくす */
+    border-radius: 5px; /* 角丸をつける */
+    padding: 10px 15px; /* ボタンの内側の余白 */
+    margin: 5px; /* ボタン同士の余白 */
+    background-color: #96b97d; /* ボタンの背景色 */
+    color: white; /* ボタンの文字色 */
+    text-align: center; /* ボタンのテキストを中央揃えにする */
+    text-decoration: none; /* テキストに下線をつけない */
+    font-size: 15px; /* テキストのフォントサイズ */
+    cursor: pointer; /* マウスポインタを変更する */
+  }
