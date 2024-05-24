@@ -1,32 +1,58 @@
-/* Category.css */
-
-/* 全体のスタイル */
 body {
-  font-family: 'Noto Sans JP', sans-serif; /* ページ全体のフォントを 'Noto Sans JP' に設定し、フォールバックとして sans-serif を使用します。 */
-  background-color: #f8f9fa; /* ページの背景色を薄いグレーに設定します。 */
-  color: #333; /* 文字色を濃いグレーに設定します。 */
-  margin: 0; /* ページ全体の余白をなくします。 */
-  padding: 0; /* ページ全体のパディングをなくします。 */
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
 }
 
-h1 {
-  font-family: 'Advent Pro', sans-serif; /* タイトルのフォントを 'Advent Pro' に設定し、フォールバックとして sans-serif を使用します。 */
-  text-align: left; /* タイトルを中央揃えにします。 */
-  margin: 20px 0; /* タイトルの上下に20pxの余白を設定します。 */
-  color: #007bff; /* タイトルの文字色を青に設定します。 */
+.container {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 1200px;
 }
 
-/* ボタンのスタイル */
-  button {
-    display: inline-block; /* ボタンを横並びにする */
-    border: none; /* 枠線をなくす */
-    border-radius: 5px; /* 角丸をつける */
-    padding: 10px 15px; /* ボタンの内側の余白 */
-    margin: 5px; /* ボタン同士の余白 */
-    background-color: #96b97d; /* ボタンの背景色 */
-    color: white; /* ボタンの文字色 */
-    text-align: center; /* ボタンのテキストを中央揃えにする */
-    text-decoration: none; /* テキストに下線をつけない */
-    font-size: 15px; /* テキストのフォントサイズ */
-    cursor: pointer; /* マウスポインタを変更する */
-  }
+.category-title {
+  text-align: left;
+  font-size: 36px;
+  margin-bottom: 40px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.grid-item {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #fafafa;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+.grid-item:hover {
+  background-color: #e0e0e0;
+}
+
+.grid-item img {
+  width: 60px;
+  height: 60px;
+  margin-right: 20px;
+}
+
+.grid-item span {
+  flex-grow: 1;
+  text-align: center;
+  font-size: 24px;
+}
