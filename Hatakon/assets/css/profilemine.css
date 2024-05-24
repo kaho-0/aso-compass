@@ -1,0 +1,92 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.container {
+    width: 80%;
+    max-width: 800px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+.header {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+}
+.header img {
+    border-radius: 10px;
+    margin-right: 20px;
+}
+.header .username {
+    font-size: 24px;
+    font-weight: bold;
+}
+.header .category {
+    font-size: 14px;
+    color: gray;
+}
+.profile-picture {
+    width: 100%;
+    height: 300px;
+    background-image: url('https://via.placeholder.com/800x300'); /* Replace with the actual image URL */
+    background-size: cover;
+    background-position: center;
+}
+.content {
+    padding: 20px;
+}
+.content h2 {
+    font-size: 18px;
+    margin-top: 0;
+}
+.content p {
+    margin: 10px 0;
+    font-size: 14px;
+    color: #555;
+}
+.content .like-button {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.content .like-button button {
+    background-color: #BEE8FF;
+    color: #000080;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 40px;
+    font-size: 16px;
+    cursor: pointer;
+}
+.content .like-button button:hover {
+    background-color: #0056b3;
+}
+
+
+
+
+
+
+.textbox {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #969da3;
+    border-radius: 3px;
+    color: #333;
+    font-size: 1em;
+    line-height: 1.5;
+}
+
+.textbox::placeholder {
+    color: #999;
+}
