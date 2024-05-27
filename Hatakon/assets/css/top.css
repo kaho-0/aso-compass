@@ -19,7 +19,7 @@ body{
   position: sticky;
   top: 0px; /* 画面上部からのオフセット */
   background-color: var(--bcground);
-  z-index: 4;
+  z-index: 3;
 }
 
 .headline{
@@ -50,14 +50,14 @@ body{
 
 .card-effect:hover{
     box-shadow: none;
-    transform: translateY(3px); /*hover時に5px下がる*/
+    transform: translateY(3px); /*hover時に3px下がる*/
 }
 
 .container-custom {
-    max-width: 1050px; /* 例として960pxを設定 */
+    max-width: 1050px;
 }
 
-@media (max-width: 1048px) {
+@media (max-width: 1065px) {
     .container-custom {
       max-width: 704px; /* 中サイズのデバイス用に幅を調整 */
     }
