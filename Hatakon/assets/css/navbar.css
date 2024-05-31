@@ -25,18 +25,27 @@ body{
     font-weight: 700;
     color: var(--black);
     margin: 0 4px 4px 0;
+    transition: text-shadow 1s;
 }
 .navbar-contents{
     display: flex;
     align-items: center;
     text-decoration: none;
 }
+.navbar-brand:hover .logo{
+    text-shadow: 0px 5px 3px rgba(0,0,0,0.1);
+}
 .icon-explore{
     margin-bottom: 4px;
     font-size: 35px;
     font-variation-settings: 'wght' 700 ,'opsz' 40;
     color: var(--black);
+    transition: transform 1.5s;
 }
+.navbar-brand:hover .icon-explore{
+    transform:rotate(360deg); /*ホバー時に回転させる*/
+}
+
 .icon-density{
     font-size: 30px;
     font-weight: 700;
@@ -49,10 +58,17 @@ body{
     margin: 0px 10px;
     border: 1px solid var(--hiroblue);
     border-radius: 20px;
-    transition: all 0.5s;
+    transition: all 0s 0s ease-out;
 }
 .icon-account:hover{
-    border: 2px solid var(--hiroblue);
+    transform: translateY(-1px);
+    box-shadow: 0px 2px 3px rgba(0,0,0,0.2);
+}
+.icon-account img{
+    width: 27px;
+    height: 27px;
+    margin: 3px 0;
+    border-radius: 100%;
 }
 .icon-account span{
     font-size: 33px;
@@ -62,8 +78,17 @@ body{
 }
 
 .icon-help{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    border-radius: 100%;
+    border: none;
+    background-color: white;
     color: var(--black);
-    padding-top: 7px;
+}
+.icon-help:hover{
+    transform: translateY(-1px);
 }
 
 .navbar-toggler{
@@ -76,24 +101,143 @@ body{
     outline: none;
     box-shadow: none;
 }
+.navbar-toggler:hover{
+    transform: translateY(-1px);
+}
 
 .nav-item{
-    padding: 15px 0 0 10px;
+    margin: 10px 0 10px 0px;
+    padding: 5px 0;
+    text-decoration: none;
     display: flex;
     align-items: center;
     color: var(--body);
-    /* border-left: 2px solid transparent; */
     transition: all 0.7s;
-}
-.nav-item:hover{
 }
 .icon-nav{
     padding-top: 3px;
     text-decoration: none;
     color: var(--body);
 }
+.icon-nav-arrow{
+    opacity: 0;
+    max-width: 0;
+    overflow: hidden;
+    transition: opacity 0.5s, max-width 0.4s ease-out;
+}
+.nav-item:hover .icon-nav-arrow {
+    opacity: 1;
+    max-width: 25px; /* アイコンの高さに合わせて調整 */
+}
 .nav-link{
-    padding: 8px;
+    padding: 0 8px;
+}
+
+
+/* explanation-section */
+.explanation {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: white;
+    z-index: 4;
+    transform: translateY(-100%);
+    transition: transform 1s ease-in-out;
+}
+
+.explanation.show {
+    transform: translateY(0);
+}
+
+.explanation .container {
+    width: 100%; /*コンテナが全幅を取るように設定*/
+    height: 100vh;
+    padding: 150px 25% 0px 25%; /* 必要に応じてパディングを調整 */
+    max-width: 100%; /*最大幅の制約を解除*/
+    background-color: white;
+}
+@media (max-width: 1575px) {
+    .explanation .container {
+        padding: 150px 20% 0px 20%;
+    }
+}
+
+@media (max-width: 1315px) {
+    .explanation .container {
+        padding: 150px 15% 0px 15%;
+    }
+}
+
+@media (max-width: 1115px) {
+    .explanation .container {
+        padding: 150px 10% 0px 10%;
+    }
+}
+
+@media (max-width: 955px) {
+    .explanation .container {
+        padding: 150px 5% 0px 5%;
+    }
+}
+
+@media (max-width: 400px) {
+    .explanation .container {
+        padding: 150px 2% 0px 2%;
+    }
+}
+.explanation-headline{
+    letter-spacing: 5px;
+    font-weight: 400;
+}
+.contents-close{
+    width: 100%;
+    height: 100%;
+}
+.icon-close-button{
+    border: none;
+    background-color: transparent;
+}
+.icon-close{
+    border: none;
+    font-size: 40px;
+    font-weight: bold;
+    font-variation-settings: 'wght' 700 ,'opsz' 40;
+}
+/* modal contents */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+  }
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 500px;
+    /* border: 1px solid var(--body); */
+    border: none;
+    box-shadow: 1px 1px 5px 1px rgba(0,0,0,0.2);
+    position: relative;
+    text-align: center;
+    animation: fadeIn 0.5s;
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 100;
+    }
 }
 /*Bootstrapライブラリ内のcss*/
 .offcanvas.offcanvas-end {
@@ -105,12 +249,3 @@ body{
 .offcanvas-backdrop.show {
     opacity: .2;
 }
-/* .offcanvas-backdrop.show {
-    opacity: 2;
-    background-color: rgba(0,0,0,0);
-    backdrop-filter: blur(2px);
-  }
-  .fade{
-    opacity: 0;
-    transition: none;
-  } */
