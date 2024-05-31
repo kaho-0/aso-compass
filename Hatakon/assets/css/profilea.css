@@ -1,0 +1,96 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.card {
+    background-color: white;
+    width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.profile-img {
+    width: 100%;
+    height: auto;
+}
+
+.profile-info {
+    padding: 20px;
+}
+
+.profile-id {
+    color: grey;
+    font-size: 14px;
+    margin: 0;
+}
+
+.profile-name {
+    margin: 10px 0;
+    font-size: 24px;
+}
+
+.profile-category {
+    margin: 10px 0;
+}
+
+.profile-category p {
+    margin: 0;
+    font-weight: bold;
+}
+
+.profile-category ul {
+    list-style: none;
+    padding: 0;
+    margin: 5px 0 0;
+}
+
+.profile-category li {
+    margin: 3px 0;
+}
+
+.profile-details {
+    margin: 20px 0;
+}
+
+.profile-section {
+    margin-bottom: 10px;
+}
+
+.profile-section p:first-child {
+    margin: 0;
+    font-weight: bold;
+}
+
+.like-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    text-align: center;
+}
+
+.like-btn:hover {
+    background-color: #0056b3;
+}
