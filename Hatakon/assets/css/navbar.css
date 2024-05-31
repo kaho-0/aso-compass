@@ -206,6 +206,39 @@ body{
     font-weight: bold;
     font-variation-settings: 'wght' 700 ,'opsz' 40;
 }
+/* modal contents */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+  }
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 500px;
+    /* border: 1px solid var(--body); */
+    border: none;
+    box-shadow: 1px 1px 5px 1px rgba(0,0,0,0.2);
+    position: relative;
+    text-align: center;
+    animation: fadeIn 0.5s;
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 100;
+    }
+}
 /*Bootstrapライブラリ内のcss*/
 .offcanvas.offcanvas-end {
     top: 68.39px;

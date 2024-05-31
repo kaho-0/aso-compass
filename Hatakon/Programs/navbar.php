@@ -13,8 +13,23 @@ navbar section
               <span class="material-symbols-outlined">help</span>
             </button>
             <a class="icon-account navbar-contents" href="#">
-              <p>Mktarou</p>
-              <img src="../assets/image/account2.png" alt="アカウント画像です/プロフィール画像ではない">
+              <?php
+                $_SESSION['customer']=1;
+                $pdo=new PDO($connect,USER,PASS);
+                $sql=$pdo->prepare('select * from account where id=?');
+                $sql->execute([$_SESSION['customer']]);
+                $account = $sql->fetch(PDO::FETCH_ASSOC);
+
+                echo '<p>',$account['name'],'</p>';
+                if(isset($account['account_img'])){
+                  echo '<img src="../assets/image/',$account['account_img'],'" alt="アカウント画像です/プロフィール画像ではない">';
+                }
+                else{
+                  echo '<span class="material-symbols-outlined">account_circle</span>';
+                }
+              ?>
+              <!-- <p>Mktarou</p> -->
+              <!-- <img src="../assets/image/account2.png" alt="アカウント画像です/プロフィール画像ではない"> -->
               <!-- <span class="material-symbols-outlined">account_circle</span> -->
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
@@ -44,7 +59,7 @@ navbar section
                   <a href="#" class="nav-item">
                     <span class="material-symbols-outlined icon-nav-arrow">arrow_right</span>
                     <span class="material-symbols-outlined icon-nav">bookmark</span>
-                    <span class="nav-link">お気に入り</span>
+                    <span class="nav-link">コンタクト</span>
                   </a>
                 </li>
                 <li>
@@ -58,20 +73,31 @@ navbar section
                   <a href="#" class="nav-item">
                     <span class="material-symbols-outlined icon-nav-arrow">arrow_right</span>
                     <span class="material-symbols-outlined icon-nav">notifications_active</span>
-                    <span class="nav-link">通知</span>
+                    <span class="nav-link">Likes</span>
                   </a>
                 </li>
                 <li>
-                  <a href="#" class="nav-item">
+                  <a href="#" class="nav-item asocompass-link">
                     <span class="material-symbols-outlined icon-nav-arrow">arrow_right</span>
                     <span class="material-symbols-outlined icon-nav">help</span>
                     <span class="nav-link">Asocompassとは</span>
                   </a>
                 </li>
                 <div class="mt-auto d-flex justify-content-end pe-3 pb-3">
-                  <a class="nav-link nav-login" href="#">
+                  <a class="nav-link nav-logout" href="#">
                     ログアウト
                   </a>
+                </div>
+                <!-- Logout Confirmation Modal -->
+                <div id="logoutModal" class="modal" aria-hidden="true">
+                  <div class="modal-content">
+                    <h4>本当にログアウトしますか？</h4>
+                    <p>ログイン時のみ本サービスはご利用いただけます。</p>
+                    <div class="modal-buttons">
+                      <button id="confirmLogout" class="btn btn-primary">ログアウト</button>
+                      <button id="cancelLogout" class="btn btn-secondary">キャンセル</button>
+                    </div>
+                  </div>
                 </div>
             </div>
           </div>
@@ -106,6 +132,7 @@ navbar section
           const helpButton = document.querySelector('.icon-help');
           const closeButton = document.querySelector('.icon-close-button');
           const explanationSection = document.querySelector('.explanation');
+          const asocompassLink = document.querySelector('.asocompass-link');
   
           let isAnimating = false; // アニメーション中かどうかを追跡するフラグ
   
@@ -131,5 +158,35 @@ navbar section
   
           helpButton.addEventListener('click', toggleExplanation);
           closeButton.addEventListener('click', toggleExplanation);
+          asocompassLink.addEventListener('click', function(event) {
+              event.preventDefault(); // デフォルトのリンク動作を無効化
+              toggleExplanation();
+          });
+
+          //Logout-Javascript
+          const logoutLink = document.querySelector('.nav-logout');
+          const modal = document.getElementById('logoutModal');
+          const confirmLogoutButton = document.getElementById('confirmLogout');
+          const cancelLogoutButton = document.getElementById('cancelLogout');
+  
+          logoutLink.addEventListener('click', function(event) {
+              event.preventDefault();
+              modal.style.display = 'block';
+          });
+  
+          confirmLogoutButton.addEventListener('click', function() {
+              // ログアウト処理をここに追加
+              window.location.href = 'login.php';
+          });
+  
+          cancelLogoutButton.addEventListener('click', function() {
+              modal.style.display = 'none';
+          });
+  
+          window.addEventListener('click', function(event) {
+              if (event.target == modal) {
+                  modal.style.display = 'none';
+              }
+          });
       });
   </script>

@@ -1,3 +1,8 @@
+<?php
+session_start(); // セッションの開始
+require 'db-connect.php'; // データベース接続
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -15,8 +20,8 @@
     <link rel="icon" href="../assets/image/favicon.ico">
     <!--Bootstrap5のリンク-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <!-- navbarのリンク -->
-    <?php require 'navbar.php'; ?>
+    <!-- PHP関連読み込み -->
+    <?php require 'navbar.php'; ?> <!-- navbarのリンク -->
     <!--style.cssに書き加えて、cssのファイル名を変更してください-->
     <link rel="stylesheet" href="../assets/css/top.css">
 </head>
@@ -32,6 +37,25 @@
               <hr class="line">
             </div>
 
+            <?php
+              $pdo=new PDO($connect,USER,PASS);
+              $sql=$pdo->query('select * from users');
+              foreach($sql as $row){
+                echo '<div class="card-size col-lg-4 col-sm-6 text-center">
+                      <div class="account card-effect bg-white rounded-2">
+                        <img src="../assets/image/',$row['profile_img'],'" alt="">
+                        <div class="d-flex justify-content-between">
+                          <h5 class="mb-10">Kotarou</h5>
+                          <p class="mb-0">SD3E</p>
+                        </div>
+                        <div class="d-flex justify-content-start">
+                          <h6>こんにちは、よろしく！</h6>
+                        </div>
+                        <button>Like</button>
+                      </div>
+                    </div>';
+              }
+            ?>
             <?php
             for($i=1; $i<=7; $i++){
               echo '<div class="card-size col-lg-4 col-sm-6 text-center">
