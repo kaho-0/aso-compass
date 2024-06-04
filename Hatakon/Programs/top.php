@@ -43,7 +43,7 @@ require 'db-connect.php'; // データベース接続
               foreach($sql as $row){
                 echo '<div class="card-size col-lg-4 col-sm-6 text-center">
                       <div class="account card-effect bg-white rounded-2">
-                        <img src="../assets/image/',$row['profile_img'],'" alt="">
+                        <img src="../assets/image/account/',$row['profile_img'],'" alt="">
                         <div class="d-flex justify-content-between">
                           <h5 class="mb-10">Kotarou</h5>
                           <p class="mb-0">SD3E</p>
@@ -60,7 +60,7 @@ require 'db-connect.php'; // データベース接続
             for($i=1; $i<=7; $i++){
               echo '<div class="card-size col-lg-4 col-sm-6 text-center">
                       <div class="account card-effect bg-white rounded-2">
-                        <img src="../assets/image/account1.png" alt="">
+                        <img src="../assets/image/account/account1.png" alt="">
                         <div class="d-flex justify-content-between">
                           <h5 class="mb-10">Kotarou</h5>
                           <p class="mb-0">SD3E</p>
@@ -73,19 +73,6 @@ require 'db-connect.php'; // データベース接続
                     </div>';
             }
             ?>
-            <div class="card-size col-lg-4 col-sm-6 text-center">
-              <div class="account card-effect bg-white rounded-2">
-                <img src="../assets/image/account1.png" alt="">
-                <div class="d-flex justify-content-between">
-                  <h5 class="mb-10">Kotarou</h5>
-                  <p class="mb-0">SD3E</p>
-                </div>
-                <div class="d-flex justify-content-start">
-                  <h6>こんにちは、よろしく！</h6>
-                </div>
-                <button>Like</button>
-              </div>
-            </div>
 
           </div>
         </div>
