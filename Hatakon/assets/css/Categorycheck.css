@@ -32,6 +32,7 @@ body {
 .grid-item {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 20px;
   border: 1px solid #ddd;
   border-radius: 10px;
@@ -55,4 +56,28 @@ body {
   flex-grow: 1;
   text-align: left;
   font-size: 24px;
+}
+
+.checkbox {
+  margin-left: 20px;
+  width: 50px;
+  height: 50px;
+}
+
+.btn--orange,
+a.btn--orange {
+  color: #fff;
+  background-color: #eb6100;
+  align-items: center;
+}
+.btn--orange:hover,
+a.btn--orange:hover {
+  color: #fff;
+  background: #f56500;
+  align-items: center;
+}
+
+a.btn--radius {
+   border-radius: 100vh;
+   align-items: center;
 }
