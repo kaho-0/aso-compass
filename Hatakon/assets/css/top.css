@@ -13,8 +13,36 @@ body{
     color:var(--black);
 }
 
+.section{
+  margin: 0 0 16px 0; 
+  padding-top: 120px;
+  position: sticky;
+  top: 0px; /* 画面上部からのオフセット */
+  background-color: var(--bcground);
+  z-index: 3;
+}
+
+.headline{
+  padding: 0px 24px;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-weight: 425;
+}
+
+.line{
+  opacity: 1;
+  background-color: var(--hatablue);
+  border-color: var(--hatablue);
+  height: 1px;
+  margin: 0;
+}
+
+.card-size{
+    width: 346px;
+    height: 370px;
+}
+
 .card-effect{
-    box-shadow: 0 8px 22px rgba(0,0,0,0.2);
+    box-shadow: 3px 5px 10px rgba(0,0,0,0.04);
     background-color: #fff;
     padding: 20px;
     transition: all 0.35s ease;
@@ -22,22 +50,22 @@ body{
 
 .card-effect:hover{
     box-shadow: none;
-    transform: translateY(5px); /*hover時に5px下がる*/
+    transform: translateY(3px); /*hover時に3px下がる*/
 }
 
 .container-custom {
-    max-width: 960px; /* 例として960pxを設定 */
+    max-width: 1050px;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1065px) {
     .container-custom {
-      max-width: 720px; /* 中サイズのデバイス用に幅を調整 */
+      max-width: 704px; /* 中サイズのデバイス用に幅を調整 */
     }
   }
   
-  @media (max-width: 768px) {
+  @media (max-width: 720px) {
     .container-custom {
-      max-width: 540px; /* 小サイズのデバイス用に幅を調整 */
+      max-width: 340px; /* 小サイズのデバイス用に幅を調整 */
     }
   }
   
@@ -46,30 +74,40 @@ body{
       max-width: 370px;
     }
   }
-  
-.account img{
-    margin-bottom: 15px;
-    width: 290px;
-    height: 160px;
-    border-radius: 10px;
+
+.account{
+  display: flex;          
+  flex-direction: column;  /*縦に並べる*/
+  padding: 20px;
+  width: 330px;
+  height: 370px;
 }
 
-.account-botton{
+.account img{
+  width: 100%;
+  height: 160px;
+  border-radius: 10px;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+.account h6{
+  text-align: left;
+}
+
+.account button{
     width: 290px;
     height: 30px;
     background-color: var(--LIKE);
     border: none;
-    /* border: 2px solid var(--LIKE); hoverした際に枠が見えるようにするため */
     border-radius: 5px;
     color: var(--hatablue);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 5px;
+    align-self: center;
+    margin-top: auto;
     transition: all 0.4s ease;
 }
 
-.account-botton:hover{
+.account button:hover{
     color: white;
     background-color: var(--hatablue);
 }
