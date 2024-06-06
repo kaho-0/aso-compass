@@ -13,9 +13,11 @@ body {
     border-radius: 8px;
     overflow: hidden;
 }
+
 .profile-contents{
     margin-top: 30%;
 }
+
 .header {
     display: flex;
     align-items: center;
