@@ -33,9 +33,9 @@ $user = [
     <link rel="stylesheet" href="../assets/css/profile.css">
 </head>
 <body>
-  <div class="container profile-contents">
+  <div class=" profile-contents">
       <div class="header">
-        <img src="https://via.placeholder.com/50" alt="User Icon" width="344" height="190">
+        <img src="https://via.placeholder.com/50" alt="User Icon" width="330" height="160">
         <div>
             <div class="username"><?php echo htmlspecialchars($user['name'], ENT_QUOTES, 'UTF-8'); ?></div>
             <div class="category">カテゴリ: 
