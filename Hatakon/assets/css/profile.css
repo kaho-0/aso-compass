@@ -1,27 +1,32 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f7f7f7;
-    margin: 0;
-    /*align-items: center;*/
-    height: 100vh;
-}
-.container {
-    /*width: 80%;
-    max-width: 800px;
-    background-color: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    overflow: hidden;*/
+
+:root {
+    --hiroblue:#0080ff;
+    --hatablue:#000080;
+    --black: #191E26;
+    --body: #78747A;
+    --bcground:#F4F6FA;
+    --LIKE:#BEE8FF;
 }
 
+body {
+    font-family:"Noto Sans JP", "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
+    color:var(--black);
+    background-color: var(--bcground);
+}
+
+
 .profile-contents{
-    width: 80%;
+    width: 70vw;
+    margin: 60px auto;
+    height: 85vh;
+    z-index: 15;
     max-width: 800px;
+    left: 45vh;
+    position: absolute;
     background-color: white;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     overflow: hidden;
-    margin-top: 30%;
 }
 
 .header {
@@ -54,7 +59,7 @@ body {
     padding: 20px;
 }
 .content h2 {
-    font-size: 18px;
+    font-size: 16px;
     margin-top: 0;
 }
 .content p {
