@@ -1,5 +1,4 @@
 <?php
-// サンプルユーザーデータ
 $user = [
     'id' => 'SD3E',
     'name' => 'Asocompas',
