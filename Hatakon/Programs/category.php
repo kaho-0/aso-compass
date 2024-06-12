@@ -23,12 +23,12 @@
             <?php
                 try {
                     $pdo = new PDO($connect, USER, PASS);
-                    $sql = "SELECT cate_name, cate_img FROM category";
+                    $sql = "SELECT cate_id, cate_name, cate_img FROM category";
                     $stmt = $pdo->query($sql);
 
                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                        echo '<a href="#" class="grid-item">';
-                        echo '<img src="path/to/images/' . $row['cate_img'] . '" alt="' . $row['cate_name'] . '">';
+                        echo '<a href="category_detail.php?id=' . $row['cate_id'] . '" class="grid-item">';
+                        echo '<img src="../assets/image/' . $row['cate_img'] . '">';
                         echo '<span>' . $row['cate_name'] . '</span>';
                         echo '</a>';
                     }
