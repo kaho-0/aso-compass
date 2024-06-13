@@ -38,22 +38,63 @@ require 'db-connect.php'; // データベース接続
             </div>
 
             <?php
-              $pdo=new PDO($connect,USER,PASS);
-              $sql=$pdo->query('select * from users');
-              foreach($sql as $row){
+              // データベース接続
+              $pdo = new PDO($connect, USER, PASS);
+              // セッションユーザーのlike_idを取得
+              $user_id = $_SESSION['customer'];
+
+              //insert section
+              if (isset($_POST['like'])){
+                $like_id = $_POST['like_id'];
+                $stmt = $pdo->prepare('INSERT INTO `like` (id, like_id) VALUES (?, ?)');
+                $stmt->execute([$user_id, $like_id]);
+              }
+              // delete section
+              if (isset($_POST['unlike'])) {
+                $like_id = $_POST['like_id'];
+                $stmt = $pdo->prepare('DELETE FROM `like` WHERE id = ? AND like_id = ?');
+                $stmt->execute([$user_id, $like_id]);
+              }
+
+              // ユーザー情報を取得し、フィルタリング
+              $stmt = $pdo->prepare('SELECT like_id FROM `like` WHERE id = ?');
+              $stmt->execute([$user_id]);
+              $liked_ids = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+              $stmt = $pdo->prepare('
+                        SELECT users.*,school.sNameID 
+                        FROM users INNER JOIN school ON users.school_name = school.sId
+                        WHERE id != ? AND id NOT IN (
+                            SELECT id_b FROM contact WHERE id_a = ?
+                            UNION
+                            SELECT id_a FROM contact WHERE id_b = ?
+                        )
+                ');
+              $stmt->execute([$user_id, $user_id, $user_id]);
+              foreach ($stmt as $row) {
+                $liked = in_array($row['id'], $liked_ids);
+
                 echo '<div class="card-size col-lg-4 col-sm-6 text-center">
-                      <div class="account card-effect bg-white rounded-2">
-                        <img src="../assets/image/account/',$row['profile_img'],'" alt="">
-                        <div class="d-flex justify-content-between">
-                          <h5 class="mb-10">Kotarou</h5>
-                          <p class="mb-0">SD3E</p>
+                        <div class="account card-effect bg-white rounded-2">
+                            <img src="../assets/image/account/' . htmlspecialchars($row['profile_img'], ENT_QUOTES, 'UTF-8') . '" alt="">
+                            <div class="d-flex justify-content-between">
+                                <h5 class="mb-10">',$row['nickname'],'</h5>
+                                <p class="mb-0">',$row['sNameID'],'</p>
+                            </div>
+                            <div class="d-flex justify-content-start">
+                                <h6>', mb_strimwidth($row['introduce'] , 0, 100,'…') ,'</h6>
+                            </div>
+                            <form method="post" action="top.php" class="mt-auto">
+                                <input type="hidden" name="like_id" value="' . htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8') . '">';
+                                
+                              if ($liked) {
+                                  echo '<button type="submit" name="unlike" class="button-delete">Cancel</button>';
+                              } else {
+                                  echo '<button type="submit" name="like" class="button-insert">Like</button>';
+                              }
+                echo        '</form>
                         </div>
-                        <div class="d-flex justify-content-start">
-                          <h6>こんにちは、よろしく！</h6>
-                        </div>
-                        <button>Like</button>
-                      </div>
-                    </div>';
+                      </div>';
               }
             ?>
             <?php
@@ -68,7 +109,7 @@ require 'db-connect.php'; // データベース接続
                         <div class="d-flex justify-content-start">
                           <h6>こんにちは、よろしく！</h6>
                         </div>
-                        <button>Like</button>
+                        <button class="button-insert">Like</button>
                       </div>
                     </div>';
             }
