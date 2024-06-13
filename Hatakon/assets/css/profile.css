@@ -1,42 +1,85 @@
-.textbox-label,
-.textbox {
-    color: #333;
+:root {
+    --hiroblue:#0080ff;
+    --hatablue:#000080;
+    --black: #191E26;
+    --body: #78747A;
+    --bcground:#F4F6FA;
+    --LIKE:#BEE8FF;
 }
 
-.textbox-label {
-    display: block;
-    margin-bottom: 5px;
-    font-size: .9em;
+body {
+    font-family:"Noto Sans JP", "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
+    color:var(--black);
+    background-color: var(--bcground);
 }
 
-.textbox {
+
+.profile-contents{
+    width: 70vw;
+    margin: 60px auto;
+    height: 85vh;
+    z-index: 15;
+    max-width: 800px;
+    left: 45vh;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+}
+.header img {
+    border-radius: 10px;
+    margin-right: 20px;
+}
+.header .username {
+    font-size: 24px;
+    font-weight: bold;
+}
+.header .category {
+    font-size: 14px;
+    color: gray;
+}
+.profile-picture {
     width: 100%;
-    padding: 8px 10px;
-    border: 1px solid #969da3;
-    border-radius: 25px;
-    font-size: 1em;
-    line-height: 1.5;
+    height: 300px;
+    background-image: url('https://via.placeholder.com/800x300'); /* Replace with the actual image URL */
+    background-size: cover;
+    background-position: center;
 }
-
-.textbox::placeholder {
-    color: #999;
+.content {
+    padding: 20px;
 }
-
-.button {
+.content h2 {
+    font-size: 16px;
+    margin-top: 0;
+}
+.content p {
+    margin: 10px 0;
+    font-size: 14px;
+    color: #555;
+}
+.content .like-button {
     display: flex;
     justify-content: center;
-    align-items: center;
-    width: 250px;
-    margin:0 auto;
-    padding: .9em 2em;
-    border: none;
-    border-radius: 25px;
-    background-color: #1a3174;
-    color: #fff;
-    font-weight: 600;
-    font-size: 1em;
+    margin-top: 20px;
 }
-
-.button:hover {
-    background-color: #0a2164;
+.content .like-button button {
+    background-color: #BEE8FF;
+    color: #000080;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 40px;
+    font-size: 16px;
+    cursor: pointer;
+}
+.content .like-button button:hover {
+    background-color: #0056b3;
 }
