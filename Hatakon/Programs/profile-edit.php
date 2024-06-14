@@ -1,9 +1,11 @@
+<?php session_start(); ?>
+<?php require 'db-connect.php'; ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asocompass-profile</title>
+    <title>Asocompass-profile-edit</title>
 
     <!--fontのリンク-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,65 +20,82 @@
     <!--navbarのリンク-->
     <?php require 'navbar.php'; ?>
     <!--style.cssに書き加えて、cssのファイル名を変更してください-->
-    <link rel="stylesheet" href="../assets/css/profilemine.css">
+    <link rel="stylesheet" href="../assets/css/profile-edit.css">
 </head>
 <body>
-  <!--?php
-    // データベース接続情報
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "asocompass";
+  <?php
+  $id = $school_name = $school_year = $gender = $birthday = $from_location = $introduce
+  = $hobby = $character_type = $profile_img = $category1 = $category2 = $category3 = $nickname = '';
+  $pdo = new PDO($connect, USER, PASS);
+  if(isset($_SESSION['users'])){
+    $profile_img=$_SESSION['users']['profile_img'];
+    $nickname=$_SESSION['users']['nickname'];
+    $category1=$_SESSION['users']['category1'];
+    $category2=$_SESSION['users']['category2'];
+    $category3=$_SESSION['users']['category3'];
+    $introduce=$_SESSION['users']['introduce'];
+    $hoby=$_SESSION['users']['hoby'];
+    $school_name=$_SESSION['users']['school_name'];
+    $character_type=$_SESSION['users']['character_type'];
 
-    // データベース接続
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // 接続確認
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    // POSTデータの処理
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $introduction = $_POST['introduction'];
-        $hobbies = $_POST['hobbies'];
-        $school = $_POST['school'];
-        $personality = $_POST['personality'];
-
-        $sql = "UPDATE users SET introduction='$introduction', hobbies='$hobbies', school='$school', personality='$personality' WHERE id=1"; // ユーザーIDを適宜変更
-
-        if ($conn->query($sql) === TRUE) {
-            echo "プロフィールが更新されました。";
-        } else {
-            echo "エラー: " . $sql . "<br>" . $conn->error;
-        }
-    }
-
-    // ユーザーデータの取得
-    $sql = "SELECT * FROM users WHERE id=1"; // ユーザーIDを適宜変更
-    $result = $conn->query($sql);
-    $user = $result->fetch_assoc();
-  ?-->
-
-  <div class="container">
+    echo '<form action="" method="post">';
+    echo '<div class="container">';
+    echo '<div class="header">';
+    echo '<img src="https://via.placeholder.com/50"
+         alt="User Icon" width="344" height="190">';
+    echo '<div>';
+    echo '<div class="username">';
+    echo '<input type="text"  name="kana" class="textbox-001" placeholder=""/ value="', $nickname , '">';
+    echo '</div>';
+    echo '<div class="category">';
+    echo 'どうしよっかな〜';
+    echo '</div>';
+    echo '</div>';
+    echo '</div>';
+    echo '<div class="content">';
+    echo '<h2>自己紹介</h2>';
+    echo '<input type="text" name="introduction" class="textbox" placeholder=""/ value="', $introduce , '">';
+    echo '<hr>';
+    echo '<h2>趣味・特技</h2>';
+    echo '<input type="text" name="hobbies" class="textbox" placeholder=""/ value="', $hobby , '">';
+    echo '<hr>';
+    echo '<h2>学校</h2>';
+    echo '<input type="text" name="school" class="textbox" placeholder=""/ value="', $school_name , '">';
+    echo '<hr>';
+    echo '<h2>性格タイプ</h2>';
+    echo '<input type="text" name="personality" class="textbox" placeholder=""/ value="', $character_type , '">';
+    echo '<hr>';
+    echo '<div class="like-button">';
+    echo '<button type="submit">登録・更新</button>';
+    echo '</div>';
+    echo '</form>';
+    echo '</div>';
+    echo '</div>';
+    }   
+  ?>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</body>
+</html>
+  
+  <!-- <div class="container">
       <div class="header">
-        <img src="https://via.placeholder.com/50"
+         <img src="https://via.placeholder.com/50"
          alt="User Icon" width="344" height="190">
           <div>
-              <div class="username">Asocompas</div>
-              <div class="category">カテゴリ: 料理, 映画, Tiktok</div>
+              <div class="username">Asocompas</div> -->
+              <!-- <div class="category">カテゴリ: 料理, 映画, Tiktok</div>
           </div>
       </div>
 
       <div class="content">
-          <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+         
               <h2>自己紹介</h2>
-              <input type="text" name="introduction" class="textbox" placeholder="ここに自己紹介文を入力してください。" value="<?php echo htmlspecialchars($user['introduction']); ?>"/>
+              <input type="text" name="introduction" class="textbox" placeholder="ここに自己紹介文を入力してください。" value="<?php echo htmlspecialchars($users['introduction']); ?>"/>
 
               <hr>
 
               <h2>趣味・特技</h2>
-              <input type="text" name="hobbies" class="textbox" placeholder="ここに趣味・特技の説明を入力してください。" value="<?php echo htmlspecialchars($user['hobbies']); ?>"/>
+              <input type="text" name="hobbies" class="textbox" placeholder="ここに趣味・特技の説明を入力してください。" value="<?php echo htmlspecialchars($users['hobbies']); ?>"/>
 
               <hr>
 
@@ -95,12 +114,5 @@
               </div>
           </form>
       </div>
-  </div>
+  </div> --> 
 
-  <?php
-    $conn->close();
-  ?>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-</body>
-</html>
