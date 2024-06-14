@@ -22,7 +22,7 @@ navbar section
 
                 echo '<p>',$account['name'],'</p>';
                 if(isset($account['account_img'])){
-                  echo '<img src="../assets/image/',$account['account_img'],'" alt="アカウント画像です/プロフィール画像ではない">';
+                  echo '<img src="../assets/image/account/',$account['account_img'],'" alt="アカウント画像です/プロフィール画像ではない">';
                 }
                 else{
                   echo '<span class="material-symbols-outlined">account_circle</span>';

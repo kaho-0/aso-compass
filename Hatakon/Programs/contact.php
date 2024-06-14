@@ -33,7 +33,7 @@ require 'db-connect.php'; // データベース接続
         <div class="container container-custom">
           <div class="row g-3">
             <div class="section">
-              <h1 class="headline">All</h1>
+              <h1 class="headline">CONTACT</h1>
               <hr class="line">
             </div>
 
@@ -62,21 +62,23 @@ require 'db-connect.php'; // データベース接続
               $liked_ids = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
               $stmt = $pdo->prepare('
-                        SELECT users.*,school.sNameID 
-                        FROM users INNER JOIN school ON users.school_name = school.sId
-                        WHERE id != ? AND id NOT IN (
-                            SELECT id_b FROM contact WHERE id_a = ?
-                            UNION
-                            SELECT id_a FROM contact WHERE id_b = ?
-                        )
+                        SELECT users.*, school.sNameID, 
+                        CASE 
+                            WHEN contact.id_a = ? THEN contact.id_b 
+                            WHEN contact.id_b = ? THEN contact.id_a 
+                        END AS contact_id
+                        FROM users
+                        INNER JOIN school ON users.school_name = school.sId
+                        INNER JOIN contact ON (users.id = contact.id_a OR users.id = contact.id_b)
+                        WHERE (contact.id_a = ? OR contact.id_b = ?)   AND (users.id != ?);
                 ');
-              $stmt->execute([$user_id, $user_id, $user_id]);
+              $stmt->execute([$user_id, $user_id, $user_id, $user_id, $user_id]);
               foreach ($stmt as $row) {
                 $liked = in_array($row['id'], $liked_ids);
 
                 echo '<div class="card-size col-lg-4 col-sm-6 text-center">
                         <div class="account card-effect bg-white rounded-2">
-                            <img src="../assets/image/account/' . htmlspecialchars($row['profile_img'], ENT_QUOTES, 'UTF-8') . '" alt="">
+                            <img src="../assets/image/account/' . htmlspecialchars($row['profile_img'], ENT_QUOTES, 'UTF-8') . '" alt="アカウントの画像">
                             <div class="d-flex justify-content-between">
                                 <h5 class="mb-10">',$row['nickname'],'</h5>
                                 <p class="mb-0">',$row['sNameID'],'</p>
