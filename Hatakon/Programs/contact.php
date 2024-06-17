@@ -73,14 +73,7 @@ require 'db-connect.php'; // データベース接続
                         INNER JOIN account ON users.id = account.id
                         WHERE (contact.id_a = ? OR contact.id_b = ?)   AND (users.id != ?);
                 ');
-
-              // 件数をカウントします
-              $sth = $pdo -> execute([$user_id, $user_id, $user_id, $user_id, $user_id]);
-              $count = $sth -> rowCount();
-              if ( $count = 0 ){
-                echo 'まだどのユーザーともコンタクトできていません。asocompassを活用して、友達を見つけましょう！';
-              };
-
+                
               $stmt->execute([$user_id, $user_id, $user_id, $user_id, $user_id]);
               foreach ($stmt as $row) {
                 $liked = in_array($row['id'], $liked_ids);
