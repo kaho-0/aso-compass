@@ -78,9 +78,10 @@ require 'db-connect.php'; // データベース接続
               $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
               if (empty($rows)) {
-                echo 'データなし';
+                echo '<p class="contact-null">まだコンタクトした人がいません...。
+                asocompassを活用して、友達を探しましょう！<p>';
               } else {
-              foreach ($stmt as $row) {
+              foreach ($rows as $row) {
                 $liked = in_array($row['id'], $liked_ids);
 
                 echo '<div class="card-size col-lg-4 col-sm-6 text-center">
@@ -110,21 +111,21 @@ require 'db-connect.php'; // データベース接続
               } }
             ?>
             <?php
-//            for($i=1; $i<=7; $i++){
-//              echo '<div class="card-size col-lg-4 col-sm-6 text-center">
-//                      <div class="account card-effect bg-white rounded-2">
-//                        <img src="../assets/image/account/account1.png" alt="">
-//                        <div class="d-flex justify-content-between">
-//                          <h5 class="mb-10">Kotarou</h5>
-//                          <p class="mb-0">SD3E</p>
-//                        </div>
-//                        <div class="d-flex justify-content-start">
-//                          <h6>こんにちは、よろしく！</h6>
-//                        </div>
-//                        <button class="button-insert">Like</button>
-//                     </div>
-//                    </div>';
-//            }
+            for($i=1; $i<=7; $i++){
+              echo '<div class="card-size col-lg-4 col-sm-6 text-center">
+                      <div class="account card-effect bg-white rounded-2">
+                        <img src="../assets/image/account/account1.png" alt="">
+                        <div class="d-flex justify-content-between">
+                          <h5 class="mb-10">Kotarou</h5>
+                          <p class="mb-0">SD3E</p>
+                        </div>
+                        <div class="d-flex justify-content-start">
+                          <h6>こんにちは、よろしく！</h6>
+                        </div>
+                        <button class="button-insert">Like</button>
+                     </div>
+                    </div>';
+            }
             ?>
 
           </div>
