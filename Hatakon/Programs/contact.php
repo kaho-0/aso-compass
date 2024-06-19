@@ -62,7 +62,7 @@ require 'db-connect.php'; // データベース接続
               $liked_ids = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
               $stmt = $pdo->prepare('
-                        SELECT users.*, school.sNameID, 
+                    SELECT users.*, school.sNameID, account.student_number as number,
                         CASE 
                             WHEN contact.id_a = ? THEN contact.id_b 
                             WHEN contact.id_b = ? THEN contact.id_a 
@@ -70,10 +70,18 @@ require 'db-connect.php'; // データベース接続
                         FROM users
                         INNER JOIN school ON users.school_name = school.sId
                         INNER JOIN contact ON (users.id = contact.id_a OR users.id = contact.id_b)
+                        INNER JOIN account ON users.id = account.id
                         WHERE (contact.id_a = ? OR contact.id_b = ?)   AND (users.id != ?);
                 ');
+                              
               $stmt->execute([$user_id, $user_id, $user_id, $user_id, $user_id]);
-              foreach ($stmt as $row) {
+              $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+              if (empty($rows)) {
+                echo '<p class="contact-null">まだコンタクトした人がいません...。
+                asocompassを活用して、友達を探しましょう！<p>';
+              } else {
+              foreach ($rows as $row) {
                 $liked = in_array($row['id'], $liked_ids);
 
                 echo '<div class="card-size col-lg-4 col-sm-6 text-center">
@@ -86,18 +94,21 @@ require 'db-connect.php'; // データベース接続
                             <div class="d-flex justify-content-start">
                                 <h6>', mb_strimwidth($row['introduce'] , 0, 100,'…') ,'</h6>
                             </div>
-                            <form method="post" action="top.php" class="mt-auto">
-                                <input type="hidden" name="like_id" value="' . htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8') . '">';
-                                
-                              if ($liked) {
-                                  echo '<button type="submit" name="unlike" class="button-delete">Cancel</button>';
-                              } else {
-                                  echo '<button type="submit" name="like" class="button-insert">Like</button>';
-                              }
-                echo        '</form>
-                        </div>
+                              <input id="copyTarget" type="text" value="',$row['number'],'" readonly>';
+                            echo '<button class="button-insert" onclick="copyToClipboard()">',$row['number'],'</button>';
+//                            <form method="post" action="top.php" class="mt-auto">
+//                                <input type="hidden" name="like_id" value="' . htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8') . '">';
+//                            
+//                                
+//                              if ($liked) {
+//                                 echo '<button type="submit" name="unlike" class="button-delete">Cancel</button>';
+//                              } else {
+//                                  echo '<button type="submit" name="like" class="button-insert">Like</button>';
+//                              }
+//                echo        '</form>';
+                    echo      '</div>
                       </div>';
-              }
+              } }
             ?>
             <?php
             for($i=1; $i<=7; $i++){
@@ -112,7 +123,7 @@ require 'db-connect.php'; // データベース接続
                           <h6>こんにちは、よろしく！</h6>
                         </div>
                         <button class="button-insert">Like</button>
-                      </div>
+                     </div>
                     </div>';
             }
             ?>
@@ -121,6 +132,22 @@ require 'db-connect.php'; // データベース接続
         </div>
 
       </section>
+
+      <script>
+        function copyToClipboard() {
+            // コピー対象をJavaScript上で変数として定義する
+            var copyTarget = document.getElementById("copyTarget");
+
+            // コピー対象のテキストを選択する
+            copyTarget.select();
+
+            // 選択しているテキストをクリップボードにコピーする
+            document.execCommand("Copy");
+
+            // コピーをお知らせする
+            alert("学籍番号をコピーしました : " + copyTarget.value);
+        }
+    </script>
     <!--Bootstrap5用の scriptなので、bodyの一番下から動かさないでください。-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>
