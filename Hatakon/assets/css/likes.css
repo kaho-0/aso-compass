@@ -17,31 +17,22 @@ body{
 .row {
   width: 80%;
   margin: 0 auto;
-  padding: 20px 0;
+  padding-top: 15vh;
   text-align: center; /* Center align the text */
   position: relative; /* Set the container as relative for absolute positioning */
 
 }
 
-/* .slider-container {
-  position: relative;
-  margin-top: 60px; /* Add margin to create space between text and slider */
-/*  border-top: 1px solid #333; /* Add a 1px solid line above the slider */
-/*  padding-top: 10px; /* Add padding to space the line from the text */
-/*} */
-
 .likes-text {
   position: absolute;
-  top: 60px; /* Position above the slider */
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 1.5em;
-  color: #333;
+  top: 15vh; /* Position above the slider */
+  font-weight: 425;
+  text-shadow: 0px 4px 4px rgba(0,0,0,0.25);
   border-bottom: 1px solid var(--hatablue);
   width: 100%;
   box-sizing: border-box;
-  
-  padding: 5px 15px; /* Add padding for spacing */
+  margin-top: 20px;
+  padding: 5px 15px 10px; /* Add padding for spacing */
 }
 
 /* Style for the new line container */
@@ -49,60 +40,54 @@ body{
   width: 100%;
   height: 2px;
   border-bottom: 1px solid var(--hatablue);
-  margin-top: 20px; /* Adjust as needed */
 }
 
-/* .slider {
-  -webkit-appearance: none;
-  width: 100%;
-  height: 15px;
-  border-radius: 5px;
-  background: #d3d3d3;
-  outline: none;
-  opacity: 0.7;
-  -webkit-transition: .2s;
-  transition: opacity .2s;
-  display: inline-block;
-}
-
-.slider:hover {
-  opacity: 1;
-}
-
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 40px;
-  height: 25px;
-  border-radius: 50%;
-  background: #3c8cac;
-  cursor: pointer;
-}
-
-.slider::-moz-range-thumb {
-  width: 40px;
-  height: 25px;
-  border-radius: 100%;
-  background: #4CAF50;
-  cursor: pointer;
-}*/
 
 .slider-contents{
-  /* display: flex
-  align-items: center; */
   white-space: nowrap;
   overflow-x: auto;
   padding-top: 100px;
+  padding-bottom: 26px;
   scrollbar-width: none;
+  display: inline-block;
+  vertical-align: middle;
 } 
 
+.scroll-btn {
+  position: absolute;
+  top: 50%;
+  height: 60%;
+  width: 40px;
+  transform: translateY(-50%);
+  background-color: var(--LIKE);
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1;
+  transition: background-color 0.3s;
+}
+
+.scroll-btn:hover {
+  background-color: var(--hiroblue);
+  color: white;
+}
+
+.scroll-btn.left {
+  left: -50px;
+}
+
+.scroll-btn.right {
+  right: -50px;
+}
+
+
 .card-size{
-  margin-top: 120px;
   width: 346px;
   height: 370px;
   transition: transform 0.2s;
   display: inline-block;
-  margin: 16px;
+  margin: 16px 5px;
   top: 250px;
 }
 
@@ -124,6 +109,8 @@ body{
   padding: 20px;
   width: 330px;
   height: 370px;
+  overflow: hidden; /* Hide overflow content */
+  box-sizing: border-box;
 }
 
 .account img{
@@ -136,6 +123,14 @@ body{
 
 .account h6{
   text-align: left;
+  word-wrap: break-word;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Limits to 3 lines */
+  -webkit-box-orient: vertical;
+  height: auto;
+  max-height: 4.5em; /* 3 lines of text at 1.5em each */
+  line-height: 1.5em;
 }
 
 .account button{
@@ -153,4 +148,30 @@ body{
 .account button:hover{
     color: white;
     background-color: var(--hatablue);
+}
+
+.scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--LIKE);
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1;
+  transition: background-color 0.3s;
+}
+
+.scroll-btn:hover {
+  background-color: var(--hatablue);
+  color: white;
+}
+
+.scroll-btn.left {
+  left: 10px;
+}
+
+.scroll-btn.right {
+  right: 10px;
 }

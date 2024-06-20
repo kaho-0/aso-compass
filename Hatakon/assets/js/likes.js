@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const sliderContents = document.querySelector('.slider-contents');
+    const cardWidth = document.querySelector('.card-size').offsetWidth + 32; // Include margin
     const scrollSpeed = 1; // Adjust this value to control the scrolling speed
 
     // Horizontal scroll with the mouse wheel
@@ -15,4 +16,15 @@ document.addEventListener('DOMContentLoaded', () => {
         // Set the new scroll position
         sliderContents.scrollLeft = newScrollLeft;
     });
+
+    // Scroll with left button click
+    document.querySelector('.scroll-btn.left').addEventListener('click', () => {
+        sliderContents.scrollLeft -= cardWidth;
+    });
+
+    // Scroll with right button click
+    document.querySelector('.scroll-btn.right').addEventListener('click', () => {
+        sliderContents.scrollLeft += cardWidth;
+    });
 });
+
