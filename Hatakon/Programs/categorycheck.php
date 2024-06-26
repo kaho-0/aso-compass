@@ -1,4 +1,5 @@
 <?php require 'db-connect.php'; ?>
+<?php require 'navbar.php'; ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -18,45 +19,47 @@
 </head>
 <body>
 <div class="container">
-        <div class="category-title">Categorychoose</div>
-        <div class="grid">
-        <?php
-                try {
-                    $pdo = new PDO($connect, USER, PASS);
-                    $sql = "SELECT cate_id, cate_name, cate_img FROM category";
-                    $stmt = $pdo->query($sql);
+    <div class="category-title">Categorychoose</div>
+    <form action="next-page.php" method="POST">
+    <div class="grid">
+    <?php
+        try {
+            $pdo = new PDO($connect, USER, PASS);
+            $sql = "SELECT cate_id, cate_name, cate_img FROM category";
+            $stmt = $pdo->query($sql);
 
-                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                        $imgSrc = "../assets/image/" . $row['cate_img'];
-                        echo '<div class="grid-item">';
-                        echo '<img src="' . $imgSrc . '" class="grid-item-img" alt="' . $row['cate_name'] . '">';
-                        echo '<span>' . $row['cate_name'] . '</span>';
-                        echo '<input type="checkbox" name="categories[]" value="' . $row['cate_id'] . '" class="checkbox">';
-                        echo '</div>';
-                    }
-                } catch (PDOException $e) {
-                    echo '接続に失敗しました: ' . $e->getMessage();
-                }
-            ?>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $imgSrc = "../assets/image/" . $row['cate_img'];
+                echo '<div class="grid-item">';
+                echo '<img src="' . $imgSrc . '" class="grid-item-img" alt="' . $row['cate_name'] . '">';
+                echo '<span>' . $row['cate_name'] . '</span>';
+                echo '<input type="checkbox" name="categories[]" value="' . $row['cate_id'] . '" class="checkbox">';
+                echo '</div>';
+            }
+        } catch (PDOException $e) {
+            echo '接続に失敗しました: ' . $e->getMessage();
+        }
+    ?>
     </div>
+    <div class="button-container">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+    </form>
 </div>
-    </div>    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const checkboxes = document.querySelectorAll('.checkbox');
-        checkboxes.forEach(function(checkbox) {
-            checkbox.addEventListener('change', function() {
-                const checkedCount = document.querySelectorAll('.checkbox:checked').length;
-                if (checkedCount > 3) {
-                    checkbox.checked = false;
-                    alert('選択できるカテゴリは3つまでです。');
-                }
-            });
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const checkboxes = document.querySelectorAll('.checkbox');
+    checkboxes.forEach(function(checkbox) {
+        checkbox.addEventListener('change', function() {
+            const checkedCount = document.querySelectorAll('.checkbox:checked').length;
+            if (checkedCount > 3) {
+                checkbox.checked = false;
+                alert('選択できるカテゴリは3つまでです。');
+            }
         });
     });
+});
 </script>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>
 </html>
