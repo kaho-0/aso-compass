@@ -28,22 +28,24 @@ body {
     overflow: hidden;
 }
 
-.header {
+.header-profile {
     display: flex;
-    align-items: center;
     padding: 20px;
     background-color: #fff;
     border-bottom: 1px solid #ddd;
 }
-.header img {
+.header-profile img {
     border-radius: 10px;
     margin-right: 20px;
 }
-.header .username {
+.header-tent{
+    padding:10px;
+}
+.header-profile .username {
     font-size: 24px;
     font-weight: bold;
 }
-.header .category {
+.header-profile .category {
     font-size: 14px;
     color: gray;
 }
@@ -53,6 +55,9 @@ body {
     background-image: url('https://via.placeholder.com/800x300'); /* Replace with the actual image URL */
     background-size: cover;
     background-position: center;
+}
+.iconp {
+    padding-bottom: 3px;
 }
 .content {
     padding: 20px;
@@ -66,10 +71,13 @@ body {
     font-size: 14px;
     color: #555;
 }
+.profile-hr {
+    margin: 12px;
+}
 .content .like-button {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 13px;
 }
 .content .like-button button {
     background-color: #BEE8FF;
