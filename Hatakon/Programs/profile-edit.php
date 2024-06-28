@@ -24,54 +24,62 @@
 </head>
 <body>
   <?php
-  $id = $school_name = $school_year = $gender = $birthday = $from_location = $introduce
-  = $hobby = $character_type = $profile_img = $category1 = $category2 = $category3 = $nickname = '';
-  $pdo = new PDO($connect, USER, PASS);
-  if(isset($_SESSION['users'])){
-    $profile_img=$_SESSION['users']['profile_img'];
-    $nickname=$_SESSION['users']['nickname'];
-    $category1=$_SESSION['users']['category1'];
-    $category2=$_SESSION['users']['category2'];
-    $category3=$_SESSION['users']['category3'];
-    $introduce=$_SESSION['users']['introduce'];
-    $hoby=$_SESSION['users']['hoby'];
-    $school_name=$_SESSION['users']['school_name'];
-    $character_type=$_SESSION['users']['character_type'];
-
-    echo '<form action="" method="post">';
-    echo '<div class="container">';
-    echo '<div class="header">';
-    echo '<img src="https://via.placeholder.com/50"
-         alt="User Icon" width="344" height="190">';
-    echo '<div>';
-    echo '<div class="username">';
-    echo '<input type="text"  name="kana" class="textbox-001" placeholder=""/ value="', $nickname , '">';
-    echo '</div>';
-    echo '<div class="category">';
-    echo 'どうしよっかな〜';
-    echo '</div>';
-    echo '</div>';
-    echo '</div>';
-    echo '<div class="content">';
-    echo '<h2>自己紹介</h2>';
-    echo '<input type="text" name="introduction" class="textbox" placeholder=""/ value="', $introduce , '">';
-    echo '<hr>';
-    echo '<h2>趣味・特技</h2>';
-    echo '<input type="text" name="hobbies" class="textbox" placeholder=""/ value="', $hobby , '">';
-    echo '<hr>';
-    echo '<h2>学校</h2>';
-    echo '<input type="text" name="school" class="textbox" placeholder=""/ value="', $school_name , '">';
-    echo '<hr>';
-    echo '<h2>性格タイプ</h2>';
-    echo '<input type="text" name="personality" class="textbox" placeholder=""/ value="', $character_type , '">';
-    echo '<hr>';
-    echo '<div class="like-button">';
-    echo '<button type="submit">登録・更新</button>';
-    echo '</div>';
-    echo '</form>';
-    echo '</div>';
-    echo '</div>';
-    }   
+    if ($user) {
+    $nickname = $user['nickname'];
+    $category1 = $user['category1'];
+    $category2 = $user['category2'];
+    $category3 = $user['category3'];
+    $introduce = $user['introduce'];
+    $hobby = $user['hobby'];
+    $school_name = $user['school_name'];
+    $character_type = $user['character_type'];
+ 
+        echo '<form action="" method="POST">';
+        echo '<div class="container">';
+        echo '<div class="header">';
+       
+        // プロフィール画像の表示（存在しない場合はデフォルトの画像を表示）
+        if (isset($user['profile_img']) && !empty($user['profile_img'])) {
+            echo '<img src="../assets/image/account/' . htmlspecialchars($user['profile_img'], ENT_QUOTES, 'UTF-8') . '" alt="アカウントの画像" width="344" height="190">';
+        } else {
+            echo '<img src="https://via.placeholder.com/50" alt="User Icon" width="344" height="190">';
+        }
+       
+        // 名前
+        echo '<div class="username">';
+        echo '<input type="text" name="kana" class="textbox-001" placeholder="" value="' . htmlspecialchars($user['nickname'], ENT_QUOTES, 'UTF-8') . '">';
+        echo '</div>';
+ 
+        //　カテゴリー
+        echo '<div class="category">';
+        echo '<a href="#">category選択</a>';
+        echo '</div>';
+        echo '</div>'; // .header
+       
+        // プロフィール
+        echo '<div class="content">';
+        echo '<h2>自己紹介</h2>';
+        echo '<input type="text" name="introduction" class="textbox" placeholder="" value="' . (isset($user['introduce']) ? htmlspecialchars($user['introduce'], ENT_QUOTES, 'UTF-8') : '') . '">';
+        echo '<hr>';
+        echo '<h2>趣味・特技</h2>';
+        echo '<input type="text" name="hobbies" class="textbox" placeholder="" value="' . (isset($user['hobby']) ? htmlspecialchars($user['hobby'], ENT_QUOTES, 'UTF-8') : '') . '">';
+        echo '<hr>';
+        echo '<h2>学校</h2>';
+        echo '<input type="text" name="school" class="textbox" placeholder="" value="' . (isset($user['school_name']) ? htmlspecialchars($user['school_name'], ENT_QUOTES, 'UTF-8') : '')  . '">';
+        echo '<hr>';
+        echo '<h2>性格タイプ</h2>';
+        echo '<input type="text" name="personality" class="textbox" placeholder="" value="' . (isset($user['character_type']) ? htmlspecialchars($user['character_type'], ENT_QUOTES, 'UTF-8') : '')  . '">';
+        echo '<hr>';
+        echo '<div class="like-button">';
+        echo '<button type="submit">登録・更新</button>';
+        echo '</div>';
+       
+        echo '</div>'; // .content
+        echo '</div>'; // .container
+        echo '</form>'; // formの終了
+    } else {
+        echo "ユーザーが見つかりませんでした。";
+    }
   ?>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>
