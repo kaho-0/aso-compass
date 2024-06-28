@@ -126,3 +126,11 @@ body{
   color: white;
   background-color: var(--hatablue);
 }
+
+#copyTarget {
+  display: none;
+}
+
+.contact-null{
+  text-align: center;
+}

@@ -1,9 +1,11 @@
+<?php session_start(); ?>
+<?php require 'db-connect.php'; ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asocompass-profile</title>
+    <title>Asocompass-profile-edit</title>
 
     <!--fontのリンク-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,65 +20,90 @@
     <!--navbarのリンク-->
     <?php require 'navbar.php'; ?>
     <!--style.cssに書き加えて、cssのファイル名を変更してください-->
-    <link rel="stylesheet" href="../assets/css/profilemine.css">
+    <link rel="stylesheet" href="../assets/css/profile-edit.css">
 </head>
 <body>
-  <!--?php
-    // データベース接続情報
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "asocompass";
-
-    // データベース接続
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // 接続確認
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    // POSTデータの処理
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $introduction = $_POST['introduction'];
-        $hobbies = $_POST['hobbies'];
-        $school = $_POST['school'];
-        $personality = $_POST['personality'];
-
-        $sql = "UPDATE users SET introduction='$introduction', hobbies='$hobbies', school='$school', personality='$personality' WHERE id=1"; // ユーザーIDを適宜変更
-
-        if ($conn->query($sql) === TRUE) {
-            echo "プロフィールが更新されました。";
+  <?php
+    if ($user) {
+    $nickname = $user['nickname'];
+    $category1 = $user['category1'];
+    $category2 = $user['category2'];
+    $category3 = $user['category3'];
+    $introduce = $user['introduce'];
+    $hobby = $user['hobby'];
+    $school_name = $user['school_name'];
+    $character_type = $user['character_type'];
+ 
+        echo '<form action="" method="POST">';
+        echo '<div class="container">';
+        echo '<div class="header">';
+       
+        // プロフィール画像の表示（存在しない場合はデフォルトの画像を表示）
+        if (isset($user['profile_img']) && !empty($user['profile_img'])) {
+            echo '<img src="../assets/image/account/' . htmlspecialchars($user['profile_img'], ENT_QUOTES, 'UTF-8') . '" alt="アカウントの画像" width="344" height="190">';
         } else {
-            echo "エラー: " . $sql . "<br>" . $conn->error;
+            echo '<img src="https://via.placeholder.com/50" alt="User Icon" width="344" height="190">';
         }
+       
+        // 名前
+        echo '<div class="username">';
+        echo '<input type="text" name="kana" class="textbox-001" placeholder="" value="' . htmlspecialchars($user['nickname'], ENT_QUOTES, 'UTF-8') . '">';
+        echo '</div>';
+ 
+        //　カテゴリー
+        echo '<div class="category">';
+        echo '<a href="#">category選択</a>';
+        echo '</div>';
+        echo '</div>'; // .header
+       
+        // プロフィール
+        echo '<div class="content">';
+        echo '<h2>自己紹介</h2>';
+        echo '<input type="text" name="introduction" class="textbox" placeholder="" value="' . (isset($user['introduce']) ? htmlspecialchars($user['introduce'], ENT_QUOTES, 'UTF-8') : '') . '">';
+        echo '<hr>';
+        echo '<h2>趣味・特技</h2>';
+        echo '<input type="text" name="hobbies" class="textbox" placeholder="" value="' . (isset($user['hobby']) ? htmlspecialchars($user['hobby'], ENT_QUOTES, 'UTF-8') : '') . '">';
+        echo '<hr>';
+        echo '<h2>学校</h2>';
+        echo '<input type="text" name="school" class="textbox" placeholder="" value="' . (isset($user['school_name']) ? htmlspecialchars($user['school_name'], ENT_QUOTES, 'UTF-8') : '')  . '">';
+        echo '<hr>';
+        echo '<h2>性格タイプ</h2>';
+        echo '<input type="text" name="personality" class="textbox" placeholder="" value="' . (isset($user['character_type']) ? htmlspecialchars($user['character_type'], ENT_QUOTES, 'UTF-8') : '')  . '">';
+        echo '<hr>';
+        echo '<div class="like-button">';
+        echo '<button type="submit">登録・更新</button>';
+        echo '</div>';
+       
+        echo '</div>'; // .content
+        echo '</div>'; // .container
+        echo '</form>'; // formの終了
+    } else {
+        echo "ユーザーが見つかりませんでした。";
     }
-
-    // ユーザーデータの取得
-    $sql = "SELECT * FROM users WHERE id=1"; // ユーザーIDを適宜変更
-    $result = $conn->query($sql);
-    $user = $result->fetch_assoc();
-  ?-->
-
-  <div class="container">
+  ?>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</body>
+</html>
+  
+  <!-- <div class="container">
       <div class="header">
-        <img src="https://via.placeholder.com/50"
+         <img src="https://via.placeholder.com/50"
          alt="User Icon" width="344" height="190">
           <div>
-              <div class="username">Asocompas</div>
-              <div class="category">カテゴリ: 料理, 映画, Tiktok</div>
+              <div class="username">Asocompas</div> -->
+              <!-- <div class="category">カテゴリ: 料理, 映画, Tiktok</div>
           </div>
       </div>
 
       <div class="content">
-          <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+         
               <h2>自己紹介</h2>
-              <input type="text" name="introduction" class="textbox" placeholder="ここに自己紹介文を入力してください。" value="<?php echo htmlspecialchars($user['introduction']); ?>"/>
+              <input type="text" name="introduction" class="textbox" placeholder="ここに自己紹介文を入力してください。" value="<?php echo htmlspecialchars($users['introduction']); ?>"/>
 
               <hr>
 
               <h2>趣味・特技</h2>
-              <input type="text" name="hobbies" class="textbox" placeholder="ここに趣味・特技の説明を入力してください。" value="<?php echo htmlspecialchars($user['hobbies']); ?>"/>
+              <input type="text" name="hobbies" class="textbox" placeholder="ここに趣味・特技の説明を入力してください。" value="<?php echo htmlspecialchars($users['hobbies']); ?>"/>
 
               <hr>
 
@@ -95,12 +122,5 @@
               </div>
           </form>
       </div>
-  </div>
+  </div> --> 
 
-  <?php
-    $conn->close();
-  ?>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-</body>
-</html>
