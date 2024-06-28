@@ -1,3 +1,4 @@
+
 :root {
     --hiroblue:#0080ff;
     --hatablue:#000080;
@@ -7,45 +8,37 @@
     --LIKE:#BEE8FF;
 }
 
+
 body {
     font-family:"Noto Sans JP", "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
     color:var(--black);
     background-color: var(--bcground);
 }
 
-
-.profile-contents{
-    width: 70vw;
-    margin: 60px auto;
-    height: 85vh;
-    z-index: 15;
+.container {
+    width: 80%;
     max-width: 800px;
-    left: 45vh;
-    position: absolute;
     background-color: white;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     overflow: hidden;
 }
-
-.header-profile {
+.header {
     display: flex;
+    align-items: center;
     padding: 20px;
     background-color: #fff;
     border-bottom: 1px solid #ddd;
 }
-.header-profile img {
+.header img {
     border-radius: 10px;
     margin-right: 20px;
 }
-.header-tent{
-    padding:10px;
-}
-.header-profile .username {
+.header .username {
     font-size: 24px;
     font-weight: bold;
 }
-.header-profile .category {
+.header .category {
     font-size: 14px;
     color: gray;
 }
@@ -56,14 +49,11 @@ body {
     background-size: cover;
     background-position: center;
 }
-.iconp {
-    padding-bottom: 3px;
-}
 .content {
     padding: 20px;
 }
 .content h2 {
-    font-size: 16px;
+    font-size: 18px;
     margin-top: 0;
 }
 .content p {
@@ -71,13 +61,10 @@ body {
     font-size: 14px;
     color: #555;
 }
-.profile-hr {
-    margin: 12px;
-}
 .content .like-button {
     display: flex;
     justify-content: center;
-    margin-top: 13px;
+    margin-top: 20px;
 }
 .content .like-button button {
     background-color: #BEE8FF;
@@ -90,4 +77,20 @@ body {
 }
 .content .like-button button:hover {
     background-color: #0056b3;
+}
+
+
+
+.textbox {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #969da3;
+    border-radius: 3px;
+    color: #333;
+    font-size: 1em;
+    line-height: 1.5;
+}
+
+.textbox::placeholder {
+    color: #999;
 }
