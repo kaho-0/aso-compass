@@ -1,0 +1,176 @@
+:root {
+  --hiroblue:#0080ff;
+  --hatablue:#000080;
+  --black: #191E26;
+  --body: #78747A;
+  --bcground:#F4F6FA;
+  --LIKE:#BEE8FF;
+}
+
+body{
+  overflow: hidden;
+  background-color: var(--bcground);
+    font-family:"Noto Sans JP", "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
+    color:var(--black);
+}
+
+.row {
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 15vh;
+  text-align: center; /* Center align the text */
+  position: relative; /* Set the container as relative for absolute positioning */
+
+}
+
+.likes-text {
+  position: absolute;
+  top: 15vh; /* Position above the slider */
+  font-weight: 425;
+  text-shadow: 0px 4px 4px rgba(0,0,0,0.25);
+  border-bottom: 1px solid var(--hatablue);
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 20px;
+  padding: 5px 15px 10px; /* Add padding for spacing */
+}
+
+/* Style for the new line container */
+.line-container {
+  width: 100%;
+  height: 2px;
+  border-bottom: 1px solid var(--hatablue);
+}
+
+
+.slider-contents{
+  white-space: nowrap;
+  overflow-x: auto;
+  padding-top: 100px;
+  padding-bottom: 26px;
+  scrollbar-width: none;
+  display: inline-block;
+  vertical-align: middle;
+} 
+
+.scroll-btn {
+  position: absolute;
+  top: 50%;
+  height: 60%;
+  width: 40px;
+  transform: translateY(-50%);
+  background-color: var(--LIKE);
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1;
+  transition: background-color 0.3s;
+}
+
+.scroll-btn:hover {
+  background-color: var(--hiroblue);
+  color: white;
+}
+
+.scroll-btn.left {
+  left: -50px;
+}
+
+.scroll-btn.right {
+  right: -50px;
+}
+
+
+.card-size{
+  width: 346px;
+  height: 370px;
+  transition: transform 0.2s;
+  display: inline-block;
+  margin: 16px 5px;
+  top: 250px;
+}
+
+.card-effect{
+  box-shadow: 3px 5px 10px rgba(0,0,0,0.04);
+  background-color: #fff;
+  padding: 20px;
+  transition: all 0.35s ease;
+}
+
+.card-effect:hover{
+  box-shadow: none;
+  transform: translateY(3px); /*hover時に5px下がる*/
+}
+
+.account{
+  display: flex;          
+  flex-direction: column;  /*縦に並べる*/
+  padding: 20px;
+  width: 330px;
+  height: 370px;
+  overflow: hidden; /* Hide overflow content */
+  box-sizing: border-box;
+}
+
+.account img{
+  width: 100%;
+  height: 160px;
+  border-radius: 10px;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+.account h6{
+  text-align: left;
+  word-wrap: break-word;
+  overflow: hidden;
+  display: -webkit-box;
+  height: auto;
+  max-height: 4.5em; /* 3 lines of text at 1.5em each */
+  line-height: 1.5em;
+  white-space: pre-line; /* Allows breaking the text into new lines */
+}
+
+.account button{
+    width: 290px;
+    height: 30px;
+    background-color: var(--LIKE);
+    border: none;
+    border-radius: 5px;
+    color: var(--hatablue);
+    align-self: center;
+    margin-top: auto;
+    transition: all 0.4s ease;
+}
+
+.account button:hover{
+    color: white;
+    background-color: var(--hatablue);
+}
+
+.scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--LIKE);
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1;
+  transition: background-color 0.3s;
+}
+
+.scroll-btn:hover {
+  background-color: var(--hatablue);
+  color: white;
+}
+
+.scroll-btn.left {
+  left: 10px;
+}
+
+.scroll-btn.right {
+  right: 10px;
+}
