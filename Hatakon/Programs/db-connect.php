@@ -5,6 +5,4 @@ const USER = 'LAA1517471';
 const PASS = 'asocompas';
 
 $connect = 'mysql:host=' . SERVER . ';dbname=' . DBNAME . ';charset=utf8';
-
-
 ?>
