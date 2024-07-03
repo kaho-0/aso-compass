@@ -17,7 +17,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 </head>
 <body>
-    <div class="container">
+<?php require 'navbar.php'; ?>
+<div class="container">
         <div class="category-title">Category</div>
         <div class="grid">
             <?php
@@ -27,17 +28,17 @@
                     $stmt = $pdo->query($sql);
 
                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        $imgSrc = "../assets/image/" . $row['cate_img'];
                         echo '<a href="category_detail.php?id=' . $row['cate_id'] . '" class="grid-item">';
-                        echo '<img src="../assets/image/' . $row['cate_img'] . '">';
+                        echo '<img src="' . $imgSrc . '" class="grid-item-img" alt="' . $row['cate_name'] . '">';
                         echo '<span>' . $row['cate_name'] . '</span>';
                         echo '</a>';
                     }
                 } catch (PDOException $e) {
-                    echo 'Connection failed: ' . $e->getMessage();
+                    echo '接続に失敗しました: ' . $e->getMessage();
                 }
             ?>
         </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    </div>    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>
 </html>
