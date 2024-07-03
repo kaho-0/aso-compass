@@ -1,12 +1,6 @@
 <?php 
 session_start();
 require 'db-connect.php'; 
-
-// Check if user ID exists in the session
-if (!isset($_SESSION['user_id'])) {
-    // Generate a unique user ID
-    $_SESSION['user_id'] = uniqid('user_', true);
-}
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +31,8 @@ if (!isset($_SESSION['user_id'])) {
                 $pdo = new PDO($connect, USER, PASS);
                 $sql = $pdo->query('SELECT * FROM `like` 
                                     INNER JOIN users ON `like`.like_id = users.id
-                                    INNER JOIN school ON users.school_name = school.sId');
+                                    INNER JOIN school_test ON users.school_name = school_test.sId
+                                  ');
                 foreach ($sql as $row) {
                     echo '<div class="card-size col-lg-4 col-sm-6 text-center">
                           <div class="account card-effect bg-white rounded-2">
@@ -46,7 +41,7 @@ if (!isset($_SESSION['user_id'])) {
                               <h5 class="mb-10">' . $row['nickname'] . '</h5>
                               <p class="mb-0">' . $row['sNameID'] . '</p>
                             </div>
-                            <div class="d-flex justify-content-start">
+                            <div class="d-flex justify-content-start mb-auto">
                               <h6>' . mb_strimwidth($row['introduce'], 0, 144, '…') . '</h6>
                             </div>
                             <form method="post" action="like-action.php">

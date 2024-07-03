@@ -126,11 +126,10 @@ body{
   word-wrap: break-word;
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 3; /* Limits to 3 lines */
-  -webkit-box-orient: vertical;
   height: auto;
   max-height: 4.5em; /* 3 lines of text at 1.5em each */
   line-height: 1.5em;
+  white-space: pre-line; /* Allows breaking the text into new lines */
 }
 
 .account button{

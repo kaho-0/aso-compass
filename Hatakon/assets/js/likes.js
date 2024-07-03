@@ -16,15 +16,5 @@ document.addEventListener('DOMContentLoaded', () => {
         // Set the new scroll position
         sliderContents.scrollLeft = newScrollLeft;
     });
-
-    // Scroll with left button click
-    document.querySelector('.scroll-btn.left').addEventListener('click', () => {
-        sliderContents.scrollLeft -= cardWidth;
-    });
-
-    // Scroll with right button click
-    document.querySelector('.scroll-btn.right').addEventListener('click', () => {
-        sliderContents.scrollLeft += cardWidth;
-    });
 });
 
