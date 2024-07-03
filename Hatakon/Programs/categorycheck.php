@@ -1,4 +1,7 @@
-<?php require 'db-connect.php'; ?>
+<?php 
+session_start();
+require 'db-connect.php'; ?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -18,7 +21,7 @@
 </head>
 <body>
 <?php require 'navbar.php'; ?>
-<div class="container">
+<div class="contents">
     <div class="category-title">Categorychoose</div>
     <form action="next-page.php" method="POST">
     <div class="grid">
