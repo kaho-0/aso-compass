@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (isset($_FILES['profile_img']) && $_FILES['profile_img']['error'] === UPLOAD_ERR_OK) {
         $temp_name = $_FILES['profile_img']['tmp_name'];
-        $upload_dir = '../image/profile/';
+        $upload_dir = '../assets/image/profile/';
         $filename = uniqid() . '_' . basename($_FILES['profile_img']['name']);
         $profile_img = $upload_dir . $filename;
     
@@ -151,7 +151,7 @@ $id = $school_name = $school_department = $school_major = $school_course = $scho
         echo '<div class="profile-img-container">';
         echo '<label for="profile_img_input">';
         if (isset($user['profile_img']) && !empty($user['profile_img'])) {
-        echo '<img id="profile_img" src="../assets/image/profile/' . htmlspecialchars($user['profile_img'], ENT_QUOTES, 'UTF-8') . '" alt="アカウントの画像" width="344" height="190">';
+        echo '<img id="profile_img" src="' . htmlspecialchars($user['profile_img'], ENT_QUOTES, 'UTF-8') . '" alt="アカウントの画像" width="344" height="190">';
     } else {
             echo '<img id="profile_img" src="https://via.placeholder.com/50" alt="User Icon" width="344" height="190">';
         }        
