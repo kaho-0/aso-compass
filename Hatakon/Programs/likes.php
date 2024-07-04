@@ -29,10 +29,22 @@ require 'db-connect.php';
         <div class="slider-contents">
             <?php
                 $pdo = new PDO($connect, USER, PASS);
-                $sql = $pdo->query('SELECT * FROM `like` 
-                                    INNER JOIN users ON `like`.like_id = users.id
-                                    INNER JOIN school_test ON users.school_name = school_test.sId
+                $user_id = $_SESSION['customer'];
+                $sql = $pdo->prepare('SELECT `like`.*, users.*,school_test.*
+                                      FROM `like`
+                                      INNER JOIN users ON `like`.id = users.id
+                                      INNER JOIN school_test ON users.school_name = school_test.sId
+                                      WHERE `like`.like_id = ?;
                                   ');
+                $sql->execute([$user_id]);                  
+                if (isset($_POST['like_button'])){
+                  $like_id = $_POST['like_id'];
+                  $stmt = $pdo->prepare('INSERT INTO `contact` (id_a, id_b) VALUES (?, ?)');
+                  $stmt->execute([$user_id, $like_id]);
+                  $stmt = $pdo->prepare('DELETE from `like` where (id=? and like_id=?) or (id=? and like_id=?)');
+                  $stmt->execute([$user_id, $like_id,$like_id,$user_id]);
+                
+                }                  
                 foreach ($sql as $row) {
                     echo '<div class="card-size col-lg-4 col-sm-6 text-center">
                           <div class="account card-effect bg-white rounded-2">
@@ -44,8 +56,8 @@ require 'db-connect.php';
                             <div class="d-flex justify-content-start mb-auto">
                               <h6>' . mb_strimwidth($row['introduce'], 0, 144, '…') . '</h6>
                             </div>
-                            <form method="post" action="like-action.php">
-                            <input type="hidden" name="like_id" value="' . $row['like_id'] . '">
+                            <form method="post" action="likes.php" class="like-form" onsubmit="event.stopPropagation();">
+                            <input type="hidden" name="like_id" value="' . $row['id'] . '">
                             <button type="submit" name="like_button">Like</button>
                             </form>
                           </div>
