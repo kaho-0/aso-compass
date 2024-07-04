@@ -43,8 +43,8 @@
     if ($row) {
         echo '<div class="profile-contents">';
             echo '<div class="header-profile">';
-                echo '<img src="https://via.placeholder.com/50" alt="User Icon" width="320" height="180">';
-                echo '<div class ="header-tent">';
+            echo '<img src="../assets/image/account/' . htmlspecialchars($row['profile_img'], ENT_QUOTES, 'UTF-8') . '" alt="User Icon" width="320" height="180">';
+            echo '<div class ="header-tent">';
                     echo '<div class="username">', (isset($row['nickname']) ? htmlspecialchars($row['nickname'], ENT_QUOTES, 'UTF-8') : ''), '</div>';
                     echo '<div class="category">
                         <p class="d-flex align-items-center mb-0"><span class="material-symbols-outlined icon-nav iconp">category</span>カテゴリー</p>
