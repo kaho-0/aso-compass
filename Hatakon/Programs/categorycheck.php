@@ -1,7 +1,8 @@
 <?php 
 session_start();
-require 'db-connect.php'; ?>
-
+require 'db-connect.php'; 
+require 'navbar.php';
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
