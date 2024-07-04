@@ -43,7 +43,7 @@ require 'db-connect.php';
                   $stmt->execute([$user_id, $like_id]);
                   $stmt = $pdo->prepare('DELETE from `like` where (id=? and like_id=?) or (id=? and like_id=?)');
                   $stmt->execute([$user_id, $like_id,$like_id,$user_id]);
-                  
+                
                 }                  
                 foreach ($sql as $row) {
                     echo '<div class="card-size col-lg-4 col-sm-6 text-center">
