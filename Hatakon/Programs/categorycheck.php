@@ -1,10 +1,12 @@
 <?php 
 session_start();
-require 'db-connect.php'; ?>
-
+require 'db-connect.php'; 
+require 'navbar.php';
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+    <link rel="stylesheet" href="../assets/css/Categorycheck.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Category Page</title>
@@ -17,8 +19,6 @@ require 'db-connect.php'; ?>
     <link rel="icon" href="../assets/image/favicon.ico">
     <!--Bootstrap5のリンク-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <link rel="stylesheet" href="../assets/css/Categorycheck.css">
-    <?php require 'navbar.php'; ?>
 </head>
 <body>
 <div class="container">
