@@ -1,14 +1,14 @@
 <?php 
 session_start();
-require 'db-connect.php'; ?>
-
+require 'db-connect.php'; 
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+    <link rel="stylesheet" href="../assets/css/Categorycheck.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Category Page</title>
-    <link rel="stylesheet" href="../assets/css/Categorycheck.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Advent+Pro:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -19,9 +19,11 @@ require 'db-connect.php'; ?>
     <!--Bootstrap5のリンク-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 </head>
+<header>
+    <?php require 'navbar.php'; ?>
+</header>
 <body>
-<?php require 'navbar.php'; ?>
-<div class="contents">
+<div class="container">
     <div class="category-title">Categorychoose</div>
     <form action="next-page.php" method="POST">
     <div class="grid">
