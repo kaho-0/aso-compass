@@ -1,7 +1,6 @@
 <?php 
 session_start();
 require 'db-connect.php'; 
-require 'navbar.php';
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -20,6 +19,9 @@ require 'navbar.php';
     <!--Bootstrap5のリンク-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 </head>
+<header>
+    <?php require 'navbar.php'; ?>
+</header>
 <body>
 <div class="container">
     <div class="category-title">Categorychoose</div>
