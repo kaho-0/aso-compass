@@ -13,7 +13,10 @@ body {
 }
 header {
   width: 100%;
-  max-width: 1200px;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 145px;
+  height: 70px;
 }
 .container {
   background-color: #fff;
