@@ -1,12 +1,11 @@
 <?php
 session_start();
-require 'db-connect.php'; // データベースにアクセス
-
+require 'db-connect.php';
 // セッションのデータを消す
 unset($_SESSION['account']);
-
 // エラーメッセージの初期化
 $error = '';
+
 
 if (isset($_POST['student_number']) && isset($_POST['password'])) {
     try {
@@ -28,7 +27,7 @@ if (isset($_POST['student_number']) && isset($_POST['password'])) {
                 'password' => $row['password'],
                 'account_img' => $row['account_img']
             ];
-            header("Location: newSignup.php");
+            header("Location: top.php");
             exit();
         } else {
             $error = "学籍番号またはパスワードが間違っています";
@@ -39,117 +38,24 @@ if (isset($_POST['student_number']) && isset($_POST['password'])) {
 }
 ?>
 
-<!-- ここからHTML -->
+<!--HTML-->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Asocompass</title>
-    <!-- フォント -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Advent+Pro:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
-    <!-- アイコン -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="icon" href="../assets/image/favicon.ico">
-    <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <!-- CSS -->
-    <link rel="stylesheet" href="login.css">
-    <style>
-        :root {
-            --hiroblue: #0080ff;
-            --hatablue: #000080;
-            --black: #191E26;
-            --body: #78747A;
-            --bcground: #F4F6FA;
-            --LIKE: #BEE8FF;
-        }
-
-        body {
-            background-color: var(--bcground);
-            font-family: "Noto Sans JP", "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
-            color: var(--black);
-            overflow: hidden;
-        }
-
-        #animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.5s ease;
-        }
-
-        #login {
-            display: none;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        .logo {
-            max-width: 120%;
-            max-height: 100%;
-        }
-
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-        #login {
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
-
-        .fsize {
-            font-size: 24px;
-            font-weight: 900;
-            margin-bottom: 5px;
-        }
-
-        .y {
-            width: 100%;
-            color: #868686;
-        }
-
-        .input-field {
-            margin-bottom: 10px;
-        }
-
-        .container {
-            width: 550px;
-            padding: 40px;
-            margin-top: 80px;
-            background-color: #ffffff;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .LoginButton {
-            width: 100%;
-            padding: 10px;
-            background-color: var(--hatablue);
-            color: #ffffff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .LoginButton:hover {
-            background-color: #316ed6;
-        }
-    </style>
+    <link rel="stylesheet" href="../assets/css/login.css">
 </head>
-<body>
+    <body>
     <br>
     <!-- ロゴアニメーション -->
     <div id="animation">
@@ -180,6 +86,7 @@ if (isset($_POST['student_number']) && isset($_POST['password'])) {
             </form>
         </div>
     </div>
+<!--JS-->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
@@ -204,5 +111,5 @@ if (isset($_POST['student_number']) && isset($_POST['password'])) {
     <script src="login.js"></script>
     <!-- Bootstrap 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-</body>
+    </body>
 </html>

@@ -62,13 +62,13 @@ require 'db-connect.php'; // データベース接続
               $liked_ids = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
               $stmt = $pdo->prepare('
-                    SELECT users.*, school.sNameID, account.student_number as number,
+                    SELECT users.*, school_test.sNameID, account.student_number as number,
                         CASE 
                             WHEN contact.id_a = ? THEN contact.id_b 
                             WHEN contact.id_b = ? THEN contact.id_a 
                         END AS contact_id
                         FROM users
-                        INNER JOIN school ON users.school_name = school.sId
+                        INNER JOIN school_test ON users.school_name = school_test.sId
                         INNER JOIN contact ON (users.id = contact.id_a OR users.id = contact.id_b)
                         INNER JOIN account ON users.id = account.id
                         WHERE (contact.id_a = ? OR contact.id_b = ?)   AND (users.id != ?);
@@ -86,7 +86,7 @@ require 'db-connect.php'; // データベース接続
 
                 echo '<div class="card-size col-lg-4 col-sm-6 text-center">
                         <div class="account card-effect bg-white rounded-2">
-                            <img src="../assets/image/account/' . htmlspecialchars($row['profile_img'], ENT_QUOTES, 'UTF-8') . '" alt="アカウントの画像">
+                            <img src="../assets/image/profile/' . htmlspecialchars($row['profile_img'], ENT_QUOTES, 'UTF-8') . '" alt="アカウントの画像">
                             <div class="d-flex justify-content-between">
                                 <h5 class="mb-10">',$row['nickname'],'</h5>
                                 <p class="mb-0">',$row['sNameID'],'</p>
@@ -109,23 +109,6 @@ require 'db-connect.php'; // データベース接続
                     echo      '</div>
                       </div>';
               } }
-            ?>
-            <?php
-            for($i=1; $i<=7; $i++){
-              echo '<div class="card-size col-lg-4 col-sm-6 text-center">
-                      <div class="account card-effect bg-white rounded-2">
-                        <img src="../assets/image/account/account1.png" alt="">
-                        <div class="d-flex justify-content-between">
-                          <h5 class="mb-10">Kotarou</h5>
-                          <p class="mb-0">SD3E</p>
-                        </div>
-                        <div class="d-flex justify-content-start">
-                          <h6>こんにちは、よろしく！</h6>
-                        </div>
-                        <button class="button-insert">Like</button>
-                     </div>
-                    </div>';
-            }
             ?>
 
           </div>
