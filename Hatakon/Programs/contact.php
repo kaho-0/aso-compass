@@ -23,7 +23,8 @@ require 'db-connect.php'; // データベース接続
     <!-- PHP関連読み込み -->
     <?php require 'navbar.php'; ?> <!-- navbarのリンク -->
     <!--style.cssに書き加えて、cssのファイル名を変更してください-->
-    <link rel="stylesheet" href="../assets/css/top.css">
+    <link rel="stylesheet" href="../assets/css/profile.css">
+    <link rel="stylesheet" href="../assets/css/contact.css">
 </head>
 <body>
       <!--
@@ -86,6 +87,7 @@ require 'db-connect.php'; // データベース接続
 
                 echo '<div class="card-size col-lg-4 col-sm-6 text-center">
                         <div class="account card-effect bg-white rounded-2">
+                        <div class="mb-auto" onclick="openModal(' . htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8') . ')">
                             <img src="../assets/image/profile/' . htmlspecialchars($row['profile_img'], ENT_QUOTES, 'UTF-8') . '" alt="アカウントの画像">
                             <div class="d-flex justify-content-between">
                                 <h5 class="mb-10">',$row['nickname'],'</h5>
@@ -93,29 +95,61 @@ require 'db-connect.php'; // データベース接続
                             </div>
                             <div class="d-flex justify-content-start">
                                 <h6>', mb_strimwidth($row['introduce'] , 0, 100,'…') ,'</h6>
+                                </div>
                             </div>
                               <input id="copyTarget" type="text" value="',$row['number'],'" readonly>';
                             echo '<button class="button-insert" onclick="copyToClipboard()">',$row['number'],'</button>';
-//                            <form method="post" action="top.php" class="mt-auto">
-//                                <input type="hidden" name="like_id" value="' . htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8') . '">';
-//                            
-//                                
-//                              if ($liked) {
-//                                 echo '<button type="submit" name="unlike" class="button-delete">Cancel</button>';
-//                              } else {
-//                                  echo '<button type="submit" name="like" class="button-insert">Like</button>';
-//                              }
-//                echo        '</form>';
-                    echo      '</div>
-                      </div>';
+                    echo      '</div></div>';
+                        // modal
+                        echo '<div id="userModal-' . htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8') . '" class="modal mt-0">';
+                        echo '<div class="profile-contents">';
+                            echo '<div class="header-profile">';
+                                echo '<div class="d-flex">';
+                                  echo '<img src="../assets/image/profile/' . htmlspecialchars($row['profile_img'], ENT_QUOTES, 'UTF-8') . '" alt="User Icon" width="320" height="180">';
+                                  echo '<div class ="header-tent">';
+                                      echo '<div class="username">', (isset($row['nickname']) ? htmlspecialchars($row['nickname'], ENT_QUOTES, 'UTF-8') : ''), '</div>';
+                                      echo '<div class="category">
+                                            <p class="d-flex align-items-center mb-0"><span class="material-symbols-outlined icon-nav iconp">category</span>カテゴリー</p>
+                                            <ul>
+                                            <li>',(isset($row['category1_name']) ? htmlspecialchars($row['category1_name'], ENT_QUOTES, 'UTF-8') : ''),'</li>',
+                                            '<li>',(isset($row['category2_name']) ? htmlspecialchars($row['category2_name'], ENT_QUOTES, 'UTF-8') : ''),'</li>',
+                                            '<li>',(isset($row['category3_name']) ? htmlspecialchars($row['category3_name'], ENT_QUOTES, 'UTF-8') : ''),'</li>',
+                                            '</ul>',
+                                          '</div>';//category
+                                  echo '</div>';//header-tent
+                                echo '</div>';
+                                echo '<span class="material-symbols-outlined" onclick="closeModal(' . htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8') . ')">close</span>';
+                            echo '</div>'; // .header
+                            echo '<div class="content">';
+                              echo '<hr>';
+                              echo '<h2>自己紹介</h2>';
+                              echo '<p class="introduce">', (isset($row['introduce']) ? htmlspecialchars($row['introduce'], ENT_QUOTES, 'UTF-8') : '') ,'</p>';
+                              echo '<hr>';
+                              echo '<h2>趣味・特技</h2>';
+                              echo '<p>', (isset($row['hobby']) ? htmlspecialchars($row['hobby'], ENT_QUOTES, 'UTF-8') : ''), '</p>';
+                              echo '<hr>';
+                              echo '<h2>学校</h2>';
+                              echo '<p>', (isset($row['sName']) ? htmlspecialchars($row['sName'], ENT_QUOTES, 'UTF-8') : ''), '</p>';
+                              echo '<hr>';
+                              echo '<h2>性格タイプ</h2>';
+                              echo '<p>', (isset($row['character_type']) ? htmlspecialchars($row['character_type'], ENT_QUOTES, 'UTF-8') : ''), '</p>';
+                              echo '<hr>';
+
+                              echo '<div class="plofile-likeForm">';
+                                echo '<form method="post" action="top.php" class="likeForm">
+                                        <input type="hidden" name="like_id" value="' . htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8') . '">
+                                        <input type="hidden" name="token" value="',$token,'">';
+                                        echo '<button class="button-insert" onclick="copyToClipboard()">',$row['number'],'</button>';
+                                echo '</form>';
+                              echo '</div>';        
+                            echo '</div>'; // .content
+                        echo '</div>'; // .profile-contents
+            echo '</div>';
               } }
             ?>
-
           </div>
         </div>
-
       </section>
-
       <script>
         function copyToClipboard() {
             // コピー対象をJavaScript上で変数として定義する
@@ -130,6 +164,48 @@ require 'db-connect.php'; // データベース接続
             // コピーをお知らせする
             alert("学籍番号をコピーしました : " + copyTarget.value);
         }
+
+        function openModal(id) {
+            document.getElementById('userModal-' + id).style.display = 'block';
+        }
+
+        function closeModal(id) {
+            document.getElementById('userModal-' + id).style.display = 'none';
+        }
+        // モーダルの外側をクリックしたときにモーダルを閉じる
+        window.onclick = function(event) {
+            var modals = document.getElementsByClassName('modal');
+            for (var i = 0; i < modals.length; i++) {
+                if (event.target == modals[i]) {
+                    modals[i].style.display = 'none';
+                }
+            }
+        }
+
+        // スクロール位置を保存する関数
+        function saveScrollPosition() {
+            const scrollPosition = window.scrollY;
+            sessionStorage.setItem('scrollPosition', scrollPosition);
+        }
+
+        // 保存されたスクロール位置にスクロールする関数
+        function restoreScrollPosition() {
+            const scrollPosition = sessionStorage.getItem('scrollPosition');
+            if (scrollPosition !== null) {
+                window.scrollTo(0, scrollPosition);
+                sessionStorage.removeItem('scrollPosition');
+            }
+        }
+
+        // フォーム送信時にスクロール位置を保存する
+        document.querySelectorAll('.likeForm').forEach(form => {
+            form.addEventListener('submit', function(event) {
+                saveScrollPosition();
+            });
+        });
+
+        // ページ読み込み時にスクロール位置を復元する
+        window.addEventListener('load', restoreScrollPosition);
     </script>
     <!--Bootstrap5用の scriptなので、bodyの一番下から動かさないでください。-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
