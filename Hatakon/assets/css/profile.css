@@ -7,21 +7,41 @@
     --LIKE:#BEE8FF;
 }
 
-body {
+/* body {
     font-family:"Noto Sans JP", "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
     color:var(--black);
     background-color: var(--bcground);
+} */
+
+.profile-contents {
+    max-width: 790px;
+    /* max-width: 700px; */
 }
+
+ @media (max-width: 1065px) {
+    .profile-contents {
+      max-width: 700px; /* 中サイズのデバイス用に幅を調整 */
+    }
+  }
+
+  @media (max-width: 720px) {
+    .plofile-contents {
+      max-width: 520px; /* 小サイズのデバイス用に幅を調整 */
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .plofile-contents {
+      max-width: 235px;
+    }
+  }
 
 
 .profile-contents{
-    width: 70vw;
-    margin: 60px auto;
-    height: 85vh;
-    z-index: 15;
-    max-width: 800px;
-    left: 45vh;
-    position: absolute;
+    /* width: 70vw; */
+    margin: 120px auto 0 auto;
+    height: 713px;
+    z-index: 4;
     background-color: white;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
@@ -30,13 +50,18 @@ body {
 
 .header-profile {
     display: flex;
-    padding: 20px;
-    background-color: #fff;
-    border-bottom: 1px solid #ddd;
+    justify-content: space-between;
+    padding: 20px 20px 10px 20px;
 }
 .header-profile img {
     border-radius: 10px;
     margin-right: 20px;
+    object-fit: cover;
+}
+.header-profile .material-symbols-outlined{
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
 }
 .header-tent{
     padding:10px;
@@ -47,7 +72,7 @@ body {
 }
 .header-profile .category {
     font-size: 14px;
-    color: gray;
+    color: var(--body);
 }
 .profile-picture {
     width: 100%;
@@ -60,34 +85,46 @@ body {
     padding-bottom: 3px;
 }
 .content {
-    padding: 20px;
+    padding: 0px 20px;
 }
 .content h2 {
     font-size: 16px;
-    margin-top: 0;
+    margin : 0 20px;
 }
 .content p {
-    margin: 10px 0;
+    height: 30px;
+    margin: 10px 20px;
     font-size: 14px;
-    color: #555;
 }
-.profile-hr {
-    margin: 12px;
+.content .introduce{
+    height: 80px;
 }
-.content .like-button {
+.content hr {
+    margin: 10px;
+}
+
+.plofile-likeForm{
+    display: flex;
+    justify-content: center;
+    margin-top: 45px;
+}
+
+/* .content .like-button {
     display: flex;
     justify-content: center;
     margin-top: 13px;
 }
 .content .like-button button {
-    background-color: #BEE8FF;
-    color: #000080;
+    background-color: var(--LIKE);
+    color: var(--hatablue);
     border: none;
     border-radius: 5px;
     padding: 10px 40px;
     font-size: 16px;
     cursor: pointer;
+    transition: all 0.4s ease;
 }
 .content .like-button button:hover {
-    background-color: #0056b3;
-}
+    background-color: var(--hatablue);
+    color: white;
+} */
