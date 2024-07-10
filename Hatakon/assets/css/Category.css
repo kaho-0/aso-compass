@@ -6,7 +6,23 @@ body {
   justify-content: center;
   align-items: flex-start; /* align items to the top */
 }
-
+header {
+  width: 100%;
+  display: flex;
+  display: inline-block;
+  justify-content: center;
+  padding-bottom: 145px;
+}
+header .container {
+  background-color: inherit;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+  width: auto;
+  max-width: none;
+  margin: 0;
+  text-align: left;
+}
 .container {
   background-color: #fff;
   padding: 40px;
@@ -14,8 +30,7 @@ body {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   width: 80%;
   max-width: 1200px;
-  margin-top: 20px; /* Add margin to the top */
-  min-height: calc(100vh - 40px); /* Ensure container takes at least the full height of the viewport */
+  margin-bottom: 40px;
 }
 
 .category-title {
