@@ -58,10 +58,13 @@ $category = $cate_stmt->fetch(PDO::FETCH_ASSOC);
         <div class="container container-custom">
           <div class="row g-3">
             <div class="section">
-                <div  class="category-card">
-                    <?php echo '<img src="../assets/image/category/', $category['cate_img'],'" alt="カテゴリー画像">'; ?>
+              <div class="d-flex align-items-end">
+                <h1 class="headline">category:</h1>
+                <h1 class="headline"><?php echo htmlspecialchars($category['cate_name'], ENT_QUOTES, 'UTF-8'); ?></h1>
+                <div class="category-img">
+                  <?php echo '<img src="../assets/image/category/', $category['cate_img'],'" alt="カテゴリー画像">'; ?>
                 </div>
-              <h1 class="headline">category:<?php echo htmlspecialchars($category['cate_name'], ENT_QUOTES, 'UTF-8'); ?></h1>
+              </div>
               <hr class="line">
             </div>
 
