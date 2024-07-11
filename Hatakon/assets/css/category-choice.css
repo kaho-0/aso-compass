@@ -15,31 +15,30 @@ body{
 
 .section{
   margin: 0 0 16px 0; 
-  padding-top: 50px;
+  padding-top: 120px;
+  position: sticky;
   top: 0px; /* 画面上部からのオフセット */
   background-color: var(--bcground);
   z-index: 3;
 }
 
-.category-card {
-    width: 100%; /* headlineの幅に合わせる */
-    height: auto;
-    margin: 0 auto;
-    max-width: 80%; /* 必要に応じて調整 */
-    max-height: 80%;
-    text-align: center; /* 中央に配置 */
+.category-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 60px; /* 必要に応じて調整 */
+  max-height: 56px; /* 必要に応じて調整 */
+  /* padding-left: 15px; */
+  overflow: hidden;
 }
 
-.category-card img {
-    width: 100%;
-    height: auto;
-    max-width: 150px; /* 必要に応じて調整 */
-    max-height: 300px; /* 必要に応じて調整 */
+.category-img img{
+  width: 100px;
+  height: 100px;
 }
-
 
 .headline{
-  padding: 0px 24px;
+  padding: 0px 0 0 24px;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   font-weight: 425;
 }
