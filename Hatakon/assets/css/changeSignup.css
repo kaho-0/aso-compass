@@ -13,7 +13,7 @@
             color: var(--black);
         }
 
-        .container {
+        .change-container {
             width: 100%;
             max-width: 550px;
             padding: 30px;
@@ -57,7 +57,6 @@
             height: 100%;
             object-fit: cover;
         }
-
         .fileUploadBtn {
             display: inline-block;
             padding: 10px 50px;
@@ -95,7 +94,11 @@
                 flex-direction: column;
             }
         }
-
+        .y {
+            width: 100%;
+            color: #868686;
+            margin-left: auto;
+        }
         .title-H {
             text-align: center;
         }
