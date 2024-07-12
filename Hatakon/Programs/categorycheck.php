@@ -47,7 +47,7 @@ require 'db-connect.php';
     ?>
     </div>
     <div class="button-container">
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">登録</button>
     </div>
     </form>
 </div>
