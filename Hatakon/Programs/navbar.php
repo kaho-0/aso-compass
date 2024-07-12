@@ -4,7 +4,7 @@ navbar section
 -->
 <nav class="navbar bg-white">
         <div class="container">
-          <a class="navbar-brand navbar-contents" href="#">
+          <a class="navbar-brand navbar-contents" href="top">
             <h2 class="logo">Asocompass</h2>
             <span class="material-symbols-outlined icon-explore">explore</span>
           </a>
@@ -12,12 +12,11 @@ navbar section
             <button class="icon-help">
               <span class="material-symbols-outlined">help</span>
             </button>
-            <a class="icon-account navbar-contents" href="#">
+            <a class="icon-account navbar-contents" href="changeSignup">
               <?php
-                $_SESSION['customer']=$id;
                 $pdo=new PDO($connect,USER,PASS);
                 $sql=$pdo->prepare('select * from account where id=?');
-                $sql->execute([$_SESSION['customer']]);
+                $sql->execute([$_SESSION['account']['id']]);
                 $account = $sql->fetch(PDO::FETCH_ASSOC);
 
                 echo '<p>',$account['name'],'</p>';
