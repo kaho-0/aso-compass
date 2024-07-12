@@ -42,7 +42,7 @@ require 'db-connect.php'; // データベース接続
               // データベース接続
               $pdo = new PDO($connect, USER, PASS);
               // セッションユーザーのlike_idを取得
-              $user_id = $_SESSION['customer'];
+              $user_id = $_SESSION['account']['id'];
 
               //フォームの再リロードを防ぐ
               $token = isset($_POST['token']) ? $_POST['token'] : "";
