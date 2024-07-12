@@ -14,7 +14,7 @@ navbar section
             </button>
             <a class="icon-account navbar-contents" href="#">
               <?php
-                $_SESSION['customer']=1;
+                $_SESSION['customer']=$id;
                 $pdo=new PDO($connect,USER,PASS);
                 $sql=$pdo->prepare('select * from account where id=?');
                 $sql->execute([$_SESSION['customer']]);
