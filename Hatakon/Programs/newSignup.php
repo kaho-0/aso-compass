@@ -60,6 +60,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // プリペアドステートメントを実行
             if ($stmt->execute()) {
                 // データベースへの挿入成功
+
+                // セッションの開始
+                session_start();
+
+                // ユーザー情報をセッションに保存
+                $_SESSION['account'] = [
+                    'id' => $pdo->lastInsertId()
+                        ];
+                // $_SESSION['user_id'] = $pdo->lastInsertId();  // 直近の挿入で生成されたユーザーIDをセッションに保存する例
+                // $_SESSION['username'] = $name;  // ユーザー名など必要な情報を保存する
+
+                // リダイレクト
                 header("Location: top.php");
                 exit();
             } else {
