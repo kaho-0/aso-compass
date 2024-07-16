@@ -1,13 +1,13 @@
 <?php
 session_start();
 // セッションからユーザーIDを取得
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['account']['id'])) {
     // セッションがない場合、ログインページにリダイレクト
     header("Location: login.php");
     exit();
 }
 
-$user_id = $_SESSION['user_id'];
+$user_id = $_SESSION['account']['id'];
 
 // データベース接続情報
 require 'db-connect.php';
