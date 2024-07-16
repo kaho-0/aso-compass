@@ -2,10 +2,11 @@
 session_start(); // セッションの開始
 require 'db-connect.php'; // データベース接続
 $pdo = new PDO($connect, USER, PASS); // データベース接続
-$user_id = $_SESSION['customer']; // セッションユーザーのlike_idを取得
+$user_id = $_SESSION['acccount']['id']; // セッションユーザーのlike_idを取得
+
 
 // カテゴリーIDを取得
-$cateID = 1;
+$cateID = $_GET['id'];
 
                     // SELECT users.*, school_test.sNameID, category.*
                     // FROM users
