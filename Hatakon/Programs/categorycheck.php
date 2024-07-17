@@ -25,11 +25,27 @@ require 'db-connect.php';
 <body>
 <div class="container">
     <div class="category-title">Categorychoose</div>
-    <form action="next-page.php" method="POST">
+
+    <?php
+    if (isset($_POST['categorycheck'])){
+                // 取得
+                $selectedCategories = $_POST['categories'];
+                // いったん削除処理
+                $stmt = $pdo->prepare('DELETE from `users` where id=?');
+                $stmt->execute([$user_id, $like_id,$like_id,$user_id]);
+                // 登録処理
+                $stmt = $pdo->prepare('INSERT INTO `users` (category1,category2,category3) VALUES (?, ?, ?)');
+                $stmt->execute([$selectedCategories, $selectedCategories, $selectedCategories]);
+                }    
+
+                ?>
+
+    <form action="categorycheck.php" method="POST">
     <div class="grid">
     <?php
         try {
             $pdo = new PDO($connect, USER, PASS);
+            // カテゴリー取得
             $sql = "SELECT cate_id, cate_name, cate_img FROM category";
             $stmt = $pdo->query($sql);
 
@@ -47,7 +63,7 @@ require 'db-connect.php';
     ?>
     </div>
     <div class="button-container">
-        <button type="submit" class="btn btn-primary">登録</button>
+        <button type="submit" class="btn btn-primary" name="categorycheck">登録</button>
     </div>
     </form>
 </div>
