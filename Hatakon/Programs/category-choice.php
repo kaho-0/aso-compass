@@ -41,12 +41,6 @@ if (isset($_SESSION['account']['id'])) {
 // カテゴリーIDを取得
 $cateID = $_GET['id'];
 
-                    // SELECT users.*, school_test.sNameID, category.*
-                    // FROM users
-                    // INNER JOIN school_test ON users.school_name = school_test.sId
-                    // INNER JOIN category ON users.category1 = category.cate_id
-                    // WHERE id != ? and (category1 = ? OR category2 = ? OR category3 = ?)
-
 $stmt = $pdo->prepare('
         SELECT 
             users.*, 
@@ -89,7 +83,7 @@ $category = $cate_stmt->fetch(PDO::FETCH_ASSOC);
             <div class="section">
               <div class="d-flex align-items-end">
                 <h1 class="headline">category:</h1>
-                <h1 class="headline"><?php echo htmlspecialchars($category['cate_name'], ENT_QUOTES, 'UTF-8'); ?></h1>
+                <h1 class="headline"><?php echo htmlspecialchars($category['cate_name'] ?? '未定義のカテゴリー', ENT_QUOTES, 'UTF-8'); ?></h1>
                 <div class="category-img">
                   <?php echo '<img src="../assets/image/category/', $category['cate_img'],'" alt="カテゴリー画像">'; ?>
                 </div>
@@ -168,7 +162,7 @@ $category = $cate_stmt->fetch(PDO::FETCH_ASSOC);
                               </div>
                             </div>
 
-                            <form method="post" action="category-choice.php" class="likeForm mb-0">
+                            <form method="post" action="category-choice.php?id=' . $row['cate_id'] . '" class="likeForm mb-0">
                                 <input type="hidden" name="like_id" value="' . htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8') . '">
                                 <input type="hidden" name="token" value="',$token,'">';
                               if ($liked) {
@@ -211,12 +205,12 @@ $category = $cate_stmt->fetch(PDO::FETCH_ASSOC);
                                   echo '<h2>学校</h2>';
                                   echo '<p>', (isset($row['sName']) ? htmlspecialchars($row['sName'], ENT_QUOTES, 'UTF-8') : ''), '</p>';
                                   echo '<hr>';
-                                  echo '<h2>性格タイプ</h2>';
+                                  echo '<h2>タイプ</h2>';
                                   echo '<p>', (isset($row['character_type']) ? htmlspecialchars($row['character_type'], ENT_QUOTES, 'UTF-8') : ''), '</p>';
                                   echo '<hr>';
 
                                   echo '<div class="plofile-likeForm">';
-                                    echo '<form method="post" action="category-choice.php" class="likeForm">
+//                                     echo '<form method="post" action="category-choice.php?id=' . $row['cate_id'] . '" class="likeForm">
                                             <input type="hidden" name="like_id" value="' . htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8') . '">
                                             <input type="hidden" name="token" value="',$token,'">';
                                           if ($liked) {
