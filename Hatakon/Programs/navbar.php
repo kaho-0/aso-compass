@@ -4,7 +4,7 @@ navbar section
 -->
 <nav class="navbar bg-white">
         <div class="container">
-          <a class="navbar-brand navbar-contents" href="top">
+          <a class="navbar-brand navbar-contents" href="top.php">
             <h2 class="logo">Asocompass</h2>
             <span class="material-symbols-outlined icon-explore">explore</span>
           </a>
@@ -12,7 +12,7 @@ navbar section
             <button class="icon-help">
               <span class="material-symbols-outlined">help</span>
             </button>
-            <a class="icon-account navbar-contents" href="changeSignup">
+            <a class="icon-account navbar-contents" href="changeSignup.php">
               <?php
                 $pdo=new PDO($connect,USER,PASS);
                 $sql=$pdo->prepare('select * from account where id=?');
