@@ -30,6 +30,7 @@ require 'db-connect.php'; // データベース接続
 
 <?php
 $pdo = new PDO($connect, USER, PASS); // データベース接続
+
 if (isset($_SESSION['account']['id'])) {
   $user_id = $_SESSION['account']['id'];
 } else {
@@ -39,7 +40,7 @@ if (isset($_SESSION['account']['id'])) {
 
 
 // カテゴリーIDを取得
-$cateID = $_GET['id'];
+$cateID = 1;
 
 $stmt = $pdo->prepare('
         SELECT 
