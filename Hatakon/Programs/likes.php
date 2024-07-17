@@ -29,7 +29,7 @@ require 'db-connect.php';
         <div class="slider-contents">
             <?php
                 $pdo = new PDO($connect, USER, PASS);
-                $user_id = $_SESSION['account']['id'];
+                $user_id = $_SESSION['customer'];
                 $sql = $pdo->prepare('SELECT `like`.*, users.*,school_test.*
                                       FROM `like`
                                       INNER JOIN users ON `like`.id = users.id
