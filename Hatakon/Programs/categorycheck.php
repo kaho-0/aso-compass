@@ -50,7 +50,7 @@ require 'db-connect.php';
             $stmt = $pdo->query($sql);
 
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $imgSrc = "../assets/image/" . $row['cate_img'];
+                $imgSrc = "../assets/image/category/" . $row['cate_img'];
                 echo '<div class="grid-item">';
                 echo '<img src="' . $imgSrc . '" class="grid-item-img" alt="' . $row['cate_name'] . '">';
                 echo '<span>' . $row['cate_name'] . '</span>';
