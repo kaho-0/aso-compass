@@ -65,7 +65,7 @@ body{
   
   @media (max-width: 720px) {
     .container-custom {
-      max-width: 340px; /* 小サイズのデバイス用に幅を調整 */
+      max-width: 370px; /* 小サイズのデバイス用に幅を調整 */
     }
   }
   
@@ -125,12 +125,4 @@ body{
 .button-delete:hover{
   color: white;
   background-color: var(--hatablue);
-}
-
-#copyTarget {
-  display: none;
-}
-
-.contact-null{
-  text-align: center;
 }

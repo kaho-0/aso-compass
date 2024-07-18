@@ -42,35 +42,35 @@ navbar section
             <div class="offcanvas-body d-flex flex-column h-100">
               <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <li>
-                  <a href="#" class="nav-item">
+                  <a href="changeSignup.php" class="nav-item">
                     <span class="material-symbols-outlined icon-nav-arrow">arrow_right</span>
                     <span class="material-symbols-outlined icon-nav">account_circle</span>
                     <span class="nav-link">マイページ/会員登録</span>
                   </a>
                 </li>
                 <li>
-                  <a href="#" class="nav-item">
+                  <a href="profile-edit.php" class="nav-item">
                     <span class="material-symbols-outlined icon-nav-arrow">arrow_right</span>
                     <span class="material-symbols-outlined icon-nav">grid_view</span>
                     <span class="nav-link">プロフィール編集</span>
                   </a>
                 </li>
                 <li>
-                  <a href="#" class="nav-item">
+                  <a href="contact.php" class="nav-item">
                     <span class="material-symbols-outlined icon-nav-arrow">arrow_right</span>
                     <span class="material-symbols-outlined icon-nav">bookmark</span>
                     <span class="nav-link">コンタクト</span>
                   </a>
                 </li>
                 <li>
-                  <a href="#" class="nav-item">
+                  <a href="category.php" class="nav-item">
                     <span class="material-symbols-outlined icon-nav-arrow">arrow_right</span>
                     <span class="material-symbols-outlined icon-nav">category</span>
                     <span class="nav-link">カテゴリー</span>
                   </a>
                 </li>
                 <li>
-                  <a href="#" class="nav-item">
+                  <a href="likes.php" class="nav-item">
                     <span class="material-symbols-outlined icon-nav-arrow">arrow_right</span>
                     <span class="material-symbols-outlined icon-nav">notifications_active</span>
                     <span class="nav-link">Likes</span>

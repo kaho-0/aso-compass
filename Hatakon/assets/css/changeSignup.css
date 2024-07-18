@@ -1,0 +1,110 @@
+        :root {
+            --hiroblue: #0080ff;
+            --hatablue: #000080;
+            --black: #191E26;
+            --body: #78747A;
+            --bcground: #F4F6FA;
+            --LIKE: #BEE8FF;
+        }
+
+        body {
+            background-color: var(--bcground);
+            font-family: "Noto Sans JP", "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
+            color: var(--black);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 550px;
+            padding: 30px;
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .form-floating {
+            margin-bottom: 17px;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 10px;
+            background-color: var(--hatablue);
+            color: #ffffff;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .LoginButton:hover {
+            background-color: #316ed6;
+        }
+
+        /* 画像表示 */
+        #preview {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #000000;
+            border-radius: 10%;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+        #preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .fileUploadBtn {
+            display: inline-block;
+            padding: 10px 50px;
+            background: var(--LIKE);
+            color: var(--hatablue);
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 40px;
+        }
+        
+        .fileUploadBtn:hover,
+        .fileUploadBtn:focus {
+            filter: brightness(1.2);
+        }
+
+        /* Flexbox for image and button */
+        .image-upload-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* Media Queries for Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+            }
+
+            .fileUploadBtn {
+                padding: 15px 30px;
+            }
+
+            .image-upload-container {
+                flex-direction: column;
+            }
+        }
+
+        .title-H {
+            text-align: center;
+        }
+       
+        .title-cnrainer{
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .back-link{
+            text-decoration: none;
+        }
