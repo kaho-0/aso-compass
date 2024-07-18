@@ -27,15 +27,22 @@ require 'db-connect.php';
     <div class="category-title">Categorychoose</div>
 
     <?php
+                $pdo = new PDO($connect, USER, PASS);
+                $user_id = $_SESSION['account']['id'];
+    ?>
+
+    <?php
     if (isset($_POST['categorycheck'])){
                 // 取得
                 $selectedCategories = $_POST['categories'];
-                // いったん削除処理
-                $stmt = $pdo->prepare('DELETE from `users` where id=?');
-                $stmt->execute([$user_id, $like_id,$like_id,$user_id]);
-                // 登録処理
-                $stmt = $pdo->prepare('INSERT INTO `users` (category1,category2,category3) VALUES (?, ?, ?)');
-                $stmt->execute([$selectedCategories, $selectedCategories, $selectedCategories]);
+
+                $category1 = isset($selectedCategories[0]) ? $selectedCategories[0] : null;
+                $category2 = isset($selectedCategories[1]) ? $selectedCategories[1] : null;
+                $category3 = isset($selectedCategories[2]) ? $selectedCategories[2] : null;
+
+                // 更新処理
+                $stmt = $pdo->prepare('UPDATE `users` SET `category1`=?, `category2`=?, `category3`=? WHERE `id`=?');
+                $stmt->execute([$category1, $category2, $category3, $user_id]);
                 }    
 
                 ?>
@@ -44,17 +51,27 @@ require 'db-connect.php';
     <div class="grid">
     <?php
         try {
-            $pdo = new PDO($connect, USER, PASS);
+
+            // ユーザーが選択したカテゴリIDを取得
+            $sql = "SELECT category1, category2, category3 FROM users WHERE id = ?";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([$user_id]);
+            $userCategories = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            $userCategoryIds = array_filter([$userCategories['category1'], $userCategories['category2'], $userCategories['category3']]);
+
+
             // カテゴリー取得
             $sql = "SELECT cate_id, cate_name, cate_img FROM category";
             $stmt = $pdo->query($sql);
 
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $imgSrc = "../assets/image/category/" . $row['cate_img'];
+                $isChecked = in_array($row['cate_id'], $userCategoryIds) ? 'checked' : '';
                 echo '<div class="grid-item">';
                 echo '<img src="' . $imgSrc . '" class="grid-item-img" alt="' . $row['cate_name'] . '">';
                 echo '<span>' . $row['cate_name'] . '</span>';
-                echo '<input type="checkbox" name="categories[]" value="' . $row['cate_id'] . '" class="checkbox">';
+                echo '<input type="checkbox" name="categories[]" value="1" class="checkbox" ' . $isChecked . '>';
                 echo '</div>';
             }
         } catch (PDOException $e) {
