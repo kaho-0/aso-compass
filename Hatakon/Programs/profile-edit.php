@@ -29,7 +29,7 @@ session_start(); ?>
 // データベース接続
 $pdo = new PDO($connect, USER, PASS);
 // ユーザーIDをセッションから取得
-$user_id = $_SESSION['customer'];
+$user_id = $_SESSION['account']['id'];
 
 // ユーザーデータをデータベースから取得 check
 $stmt = $pdo->prepare('
@@ -163,7 +163,7 @@ $id = $school_name = $school_department = $school_major = $school_course = $scho
         echo '<div class="username">';
         echo '<input type="text" name="nickname" class="textbox-001" placeholder="" value="' . htmlspecialchars($nickname, ENT_QUOTES, 'UTF-8') . '" required>';
         echo '<div class="category">';
-        echo '<a class="category" href="#">カテゴリー選択</a>';
+        echo '<a class="category" href="categorycheck.php">カテゴリー選択</a>';
         echo '</div>';
         echo '</div>';
 

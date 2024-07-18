@@ -22,23 +22,8 @@ body{
   z-index: 3;
 }
 
-.category-img {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 60px; /* 必要に応じて調整 */
-  max-height: 56px; /* 必要に応じて調整 */
-  /* padding-left: 15px; */
-  overflow: hidden;
-}
-
-.category-img img{
-  width: 100px;
-  height: 100px;
-}
-
 .headline{
-  padding: 0px 0 0 24px;
+  padding: 0px 24px;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   font-weight: 425;
 }
@@ -51,9 +36,10 @@ body{
   margin: 0;
 }
 
-.card-size{
-    width: 346px;
-    height: 370px;
+.card-size {
+  width: 346px;
+  height: 370px;
+  margin-bottom: 20px; /* カード間のスペースを追加 */
 }
 
 .card-effect{
@@ -90,12 +76,13 @@ body{
     }
   }
 
-.account{
-  display: flex;          
-  flex-direction: column;  /*縦に並べる*/
-  padding: 20px;
-  width: 330px;
-  height: 370px;
+  .account {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* カード内の要素を均等に配置 */
+    padding: 20px;
+    width: 100%; /* カードの幅を親要素に合わせる */
+    height: 370px;
 }
 
 .account img{
@@ -140,4 +127,12 @@ body{
 .button-delete:hover{
   color: white;
   background-color: var(--hatablue);
+}
+
+#copyTarget {
+  display: none;
+}
+
+.contact-null{
+  text-align: center;
 }

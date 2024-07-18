@@ -1,4 +1,7 @@
-<?php require 'db-connect.php'; ?>
+<?php 
+session_start();
+require 'db-connect.php'; 
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -16,8 +19,10 @@
     <!--Bootstrap5のリンク-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 </head>
+<header>
+    <?php require 'navbar.php'; ?>
+</header>
 <body>
-<?php require 'navbar.php'; ?>
 <div class="container">
         <div class="category-title">Category</div>
         <div class="grid">
@@ -28,8 +33,8 @@
                     $stmt = $pdo->query($sql);
 
                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                        $imgSrc = "../assets/image/" . $row['cate_img'];
-                        echo '<a href="category_detail.php?id=' . $row['cate_id'] . '" class="grid-item">';
+                        $imgSrc = "../assets/image/category/" . $row['cate_img'];
+                        echo '<a href="category-choice.php?id=' . $row['cate_id'] . '" class="grid-item">';
                         echo '<img src="' . $imgSrc . '" class="grid-item-img" alt="' . $row['cate_name'] . '">';
                         echo '<span>' . $row['cate_name'] . '</span>';
                         echo '</a>';

@@ -30,7 +30,7 @@ if (isset($_POST['student_number']) && isset($_POST['password'])) {
             header("Location: top.php");
             exit();
         } else {
-            $error = "学籍番号またはパスワードが間違っています";
+            $error = "学籍番号またはPasswordが間違っています!";
         }
     } catch (PDOException $e) {
         $error = "データベースエラー: " . $e->getMessage();
@@ -44,7 +44,7 @@ if (isset($_POST['student_number']) && isset($_POST['password'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asocompass</title>
+    <title>Asocompass-Login</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Advent+Pro:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -68,15 +68,15 @@ if (isset($_POST['student_number']) && isset($_POST['password'])) {
                 <p class="fsize">Login</p>
                 <div class="y">学籍番号とPasswordを入力してください</div>
                 <div class="form-floating mb-3">
-                    <input type="text" name="student_number" class="form-control" id="student_number" placeholder="pafupafu@tapple.com" required>
+                    <input type="text" name="student_number" class="form-control" id="student_number" placeholder="pafupafu@tapple.com"maxlength="10" required>
                     <label for="student_number">学籍番号</label>
                 </div>
                 <div class="form-floating">
-                    <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
+                    <input type="password" name="password" class="form-control" id="password" placeholder="Password" maxlength="10" required>
                     <label for="password">Password</label>
                 </div>
                 <div class="my-3">
-                    <a href="newSignup.php">会員登録はこちら</a>
+                    <a href="newSignup.php" class="Sign-seni">会員登録はこちら</a>
                 </div>
                 <!-- エラーメッセージ -->
                 <?php if (!empty($error)): ?>
