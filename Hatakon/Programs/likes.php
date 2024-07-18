@@ -25,9 +25,9 @@ require 'db-connect.php';
 </head>
 <body>
     <div class="row">
-        <h1><div class="likes-text">Likes</div></h1>
+    <div class="likes-text"><h1>Likes</h1></div>
         <div class="slider-contents">
-            <?php
+        <?php
                 $pdo = new PDO($connect, USER, PASS);
                 $user_id = $_SESSION['customer'];
                 $sql = $pdo->prepare('SELECT `like`.*, users.*,school_test.*
@@ -43,7 +43,7 @@ require 'db-connect.php';
                   $stmt->execute([$user_id, $like_id]);
                   $stmt = $pdo->prepare('DELETE from `like` where (id=? and like_id=?) or (id=? and like_id=?)');
                   $stmt->execute([$user_id, $like_id,$like_id,$user_id]);
-                
+                 
                 }                  
                 foreach ($sql as $row) {
                     echo '<div class="card-size col-lg-4 col-sm-6 text-center">
@@ -62,7 +62,7 @@ require 'db-connect.php';
                             </form>
                           </div>
                         </div>';    
-                }
+                }   
             ?>
         </div>
         <div class="line-container"></div>
