@@ -181,7 +181,7 @@ $category = $cate_stmt->fetch(PDO::FETCH_ASSOC);
                             echo '<div class="profile-contents">';
                                 echo '<div class="header-profile">';
                                     echo '<div class="d-flex">';
-                                      echo '<img src="../assets/image/account/' . htmlspecialchars($row['profile_img'], ENT_QUOTES, 'UTF-8') . '" alt="User Icon" width="320" height="180">';
+                                      echo '<img src="../assets/image/profile/' . htmlspecialchars($row['profile_img'], ENT_QUOTES, 'UTF-8') . '" alt="User Icon" width="320" height="180">';
                                       echo '<div class ="header-tent">';
                                           echo '<div class="username">', (isset($row['nickname']) ? htmlspecialchars($row['nickname'], ENT_QUOTES, 'UTF-8') : ''), '</div>';
                                           echo '<div class="category">
