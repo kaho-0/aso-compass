@@ -40,7 +40,7 @@ if (isset($_SESSION['account']['id'])) {
 
 
 // カテゴリーIDを取得
-$cateID = 1;
+$cateID = $_GET['id'];
 
 $stmt = $pdo->prepare('
         SELECT 
