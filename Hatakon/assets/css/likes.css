@@ -46,7 +46,7 @@ body{
 .slider-contents{
   white-space: nowrap;
   overflow-x: auto;
-  padding-top: 100px;
+  padding-top: 7px;
   padding-bottom: 26px;
   scrollbar-width: none;
   display: inline-block;
