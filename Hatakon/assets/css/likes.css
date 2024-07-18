@@ -24,18 +24,17 @@ body{
 }
 
 .likes-text {
-  position: absolute;
-  top: 15vh; /* Position above the slider */
+  
+  top: 15vh;
   font-weight: 425;
   text-shadow: 0px 4px 4px rgba(0,0,0,0.25);
   border-bottom: 1px solid var(--hatablue);
   width: 100%;
   box-sizing: border-box;
   margin-top: 20px;
-  padding: 5px 15px 10px; /* Add padding for spacing */
+  padding: 5px 15px 10px;
 }
 
-/* Style for the new line container */
 .line-container {
   width: 100%;
   height: 2px;
@@ -43,14 +42,16 @@ body{
 }
 
 
+
 .slider-contents{
   white-space: nowrap;
   overflow-x: auto;
-  padding-top: 100px;
+  padding-top: 7px;
   padding-bottom: 26px;
   scrollbar-width: none;
   display: inline-block;
   vertical-align: middle;
+  height: 400px;
 } 
 
 .scroll-btn {

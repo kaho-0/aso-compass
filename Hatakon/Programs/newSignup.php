@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // プリペアドステートメントを実行
             if ($stmt->execute()) {
                 // データベースへの挿入成功
-                header("Location: login.php");
+                header("Location: top.php");
                 exit();
             } else {
                 $error = "エラー: データベースへの挿入に失敗しました。";
@@ -87,113 +87,14 @@ $pdo = null;
     <title>アカウント登録</title>
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- カスタムCSS -->
-    <style>
-        :root {
-            --hiroblue: #0080ff;
-            --hatablue: #000080;
-            --black: #191E26;
-            --body: #78747A;
-            --bcground: #F4F6FA;
-            --LIKE: #BEE8FF;
-        }
-
-        body {
-            background-color: var(--bcground);
-            font-family: "Noto Sans JP", "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
-            color: var(--black);
-        }
-
-        .container {
-            width: 100%;
-            max-width: 550px;
-            padding: 30px;
-            background-color: #ffffff;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .form-floating {
-            margin-bottom: 17px;
-        }
-
-        .btn-primary {
-            width: 100%;
-            padding: 10px;
-            background-color: var(--hatablue);
-            color: #ffffff;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .LoginButton:hover {
-            background-color: #316ed6;
-        }
-
-        /* 画像表示 */
-        #preview {
-            width: 100px;
-            height: 100px;
-            border: 1px solid #000000;
-            border-radius: 10%;
-            overflow: hidden;
-            margin-bottom: 8px;
-        }
-        #preview img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .fileUploadBtn {
-            display: inline-block;
-            padding: 10px 50px;
-            background: var(--LIKE);
-            color: var(--hatablue);
-            cursor: pointer;
-            border-radius: 5px;
-            margin-top: 40px;
-        }
-        
-        .fileUploadBtn:hover,
-        .fileUploadBtn:focus {
-            filter: brightness(1.2);
-        }
-
-        /* Flexbox for image and button */
-        .image-upload-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        /* Media Queries for Responsive Design */
-        @media (max-width: 768px) {
-            .container {
-                width: 90%;
-            }
-
-            .fileUploadBtn {
-                padding: 15px 30px;
-            }
-
-            .image-upload-container {
-                flex-direction: column;
-            }
-        }
-
-        .title-H {
-            text-align: center;
-        }
-    </style>
+    <!-- css -->
+    <link rel="stylesheet" href="../assets/css/newSignup.css">
 </head>
 <body>
-    <br><br>
+    <br>
+    <div class="title-cnrainer">
+    <a href="login.php" class="back-link">← 戻る</a>
+</div>
     <div class="title-H">
         <h2>アカウント情報</h2>
     </div>
@@ -206,12 +107,13 @@ $pdo = null;
                     写真を選択する
                 </label>
             </div>
+            <div class="y">氏名は本名を、Passwordは半角英数字で入力してください。</div>
             <div class="form-floating">
                 <input type="text" name="name" class="form-control" id="name" placeholder="氏名" maxlength="20">
                 <label for="name">氏名</label>
             </div>
             <div class="form-floating">
-                <input type="text" name="student_number" class="form-control" id="student_number" placeholder="学籍番号" maxlength="10">
+                <input type="text" name="student_number" class="form-control" id="student_number" placeholder="学籍番号" maxlength="9">
                 <label for="student_number">学籍番号</label>
             </div>
             <div class="form-floating">

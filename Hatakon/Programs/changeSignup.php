@@ -1,19 +1,21 @@
 <?php
 session_start();
-
-// セッションがない場合はログインページにリダイレクト
-if (!isset($_SESSION['user_id'])) {
+// セッションからユーザーIDを取得
+if (!isset($_SESSION['account']['id'])) {
+    // セッションがない場合、ログインページにリダイレクト
     header("Location: login.php");
     exit();
 }
+
+$user_id = $_SESSION['account']['id'];
+
 // データベース接続情報
 require 'db-connect.php';
 $pdo = new PDO($connect, USER, PASS);
 
-// ユーザーID（例：セッションから取得）
-
 // 初期化
 $error = '';
+$success = '';
 
 // ユーザー情報の取得
 $stmt = $pdo->prepare("SELECT * FROM account WHERE id = :id");
@@ -55,6 +57,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $error = "エラー: 氏名と学籍番号は必須です！";
     }
 
+    // 学籍番号の重複チェック
+    $stmt = $pdo->prepare("SELECT COUNT(*) FROM account WHERE student_number = :student_number AND id != :id");
+    $stmt->bindParam(':student_number', $student_number);
+    $stmt->bindParam(':id', $user_id);
+    $stmt->execute();
+    $count = $stmt->fetchColumn();
+
+    if ($count > 0) {
+        $error = "エラー: この学籍番号は既に使用されています。";
+    }
+
     // エラーがない場合にのみデータベースを更新
     if (empty($error)) {
         // パスワードの更新がある場合のみハッシュ化
@@ -74,17 +87,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // プリペアドステートメントを実行
         if ($stmt->execute()) {
             // データベースの更新成功
-            header("Location: login.php");
-            exit();
+            $success = "更新が成功しました！";
         } else {
             $error = "エラー: データベースの更新に失敗しました。";
         }
     }
 }
-
-// データベース接続のクローズ
 $pdo = null;
 ?>
+<!--HTML-->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -95,174 +106,81 @@ $pdo = null;
     <title>アカウント登録</title>
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- カスタムCSS -->
-    <style>
-        :root {
-            --hiroblue: #0080ff;
-            --hatablue: #000080;
-            --black: #191E26;
-            --body: #78747A;
-            --bcground: #F4F6FA;
-            --LIKE: #BEE8FF;
-        }
-
-        body {
-            background-color: var(--bcground);
-            font-family: "Noto Sans JP", "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
-            color: var(--black);
-        }
-
-        .container {
-            width: 100%;
-            max-width: 550px;
-            padding: 30px;
-            background-color: #ffffff;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .form-floating {
-            margin-bottom: 17px;
-        }
-
-        .btn-primary {
-            width: 100%;
-            padding: 10px;
-            background-color: var(--hatablue);
-            color: #ffffff;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .LoginButton:hover {
-            background-color: #316ed6;
-        }
-
-        /* 画像表示 */
-        #preview {
-            width: 100px;
-            height: 100px;
-            border: 1px solid #000000;
-            border-radius: 10%;
-            overflow: hidden;
-            margin-bottom: 8px;
-        }
-        #preview img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .fileUploadBtn {
-            display: inline-block;
-            padding: 10px 50px;
-            background: var(--LIKE);
-            color: var(--hatablue);
-            cursor: pointer;
-            border-radius: 5px;
-            margin-top: 40px;
-        }
-        
-        .fileUploadBtn:hover,
-        .fileUploadBtn:focus {
-            filter: brightness(1.2);
-        }
-
-        /* Flexbox for image and button */
-        .image-upload-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        /* Media Queries for Responsive Design */
-        @media (max-width: 768px) {
-            .container {
-                width: 90%;
-            }
-
-            .fileUploadBtn {
-                padding: 15px 30px;
-            }
-
-            .image-upload-container {
-                flex-direction: column;
-            }
-        }
-
-        .title-H {
-            text-align: center;
-        }
-    </style>
+    <!-- css -->
+    <link rel="stylesheet" href="../assets/css/changeSignup.css">
 </head>
 <body>
-<br><br>
-<div class="title-H">
-    <h2>アカウント情報変更</h2>
-</div>
-<div class="container">
-    <form method="POST" enctype="multipart/form-data" action="changeSignup.php">
-        <div class="image-upload-container">
-            <div id="preview">
-                <img src="<?php echo htmlspecialchars($user['account_img']); ?>" alt="Current Profile Image">
+    <!--コンテナ外部-->
+<br>
+        <div class="title-cnrainer">
+            <a href="top.php" class="back-link">← 戻る</a>
+        </div>
+        <div class="title-H">
+            <h2>アカウント情報変更</h2>
+        </div>
+    <div class="change-container">
+        <form method="POST" enctype="multipart/form-data" action="changeSignup.php">
+            <div class="image-upload-container">
+                <div id="preview">
+                    <img src="<?php echo htmlspecialchars($user['account_img']); ?>" alt="Current Profile Image">
+                </div>
+                <label class="fileUploadBtn">
+                    <input type="file" id="fileInput" name="account_img" onchange="previewImage(event)" accept="image/*" style="display: none;">写真を選択する
+                </label>
             </div>
-            <label class="fileUploadBtn">
-                <input type="file" id="fileInput" name="account_img" onchange="previewImage(event)" accept="image/*" style="display: none;">
-                写真を選択する
-            </label>
-        </div>
-       
-        <div class="form-floating">
-            <input type="text" name="name" class="form-control" id="name" placeholder="氏名" value="<?php echo htmlspecialchars($user['name']); ?>">
-            <label for="name">氏名</label>
-        </div>
-        <div class="form-floating">
-            <input type="text" name="student_number" class="form-control" id="student_number" placeholder="学籍番号" value="<?php echo htmlspecialchars($user['student_number']); ?>">
-            <label for="student_number">学籍番号</label>
-        </div>
-        <div class="form-floating">
-            <input type="password" name="password" class="form-control" id="password" placeholder="Password">
-            <label for="password">Password</label>
-            <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-        </div>
-        <?php if (!empty($error)) : ?>
-            <p style="color: red;"><?php echo $error; ?></p>
-        <?php endif; ?>
-        <button class="btn btn-primary" type="submit">更新</button>
-    </form>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+            <div class="y">氏名・学籍番号は適切なものを入力してください。</div>
+            <div class="form-floating">
+                <input type="text" name="name" class="form-control" id="name" maxlength="20" placeholder="氏名" value="<?php echo htmlspecialchars($user['name']); ?>">
+                <label for="name">氏名</label>
+            </div>
+            <div class="form-floating">
+                <input type="text" name="student_number" class="form-control" maxlength="9" id="student_number" placeholder="学籍番号" value="<?php echo htmlspecialchars($user['student_number']); ?>">
+                <label for="student_number">学籍番号</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" name="password" class="form-control" id="password" maxlength="10" placeholder="Password">
+                <label for="password">Password</label>
+                <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+            </div>
+            <!-- メッセージ処理 -->
+            <?php if (!empty($error)) : ?>
+                <p style="color: red;"><?php echo $error; ?></p>
+            <?php endif; ?>
+            <?php if (!empty($success)) : ?>
+                <p style="color: green;"><?php echo $success; ?></p>
+            <?php endif; ?>
+            <button class="btn btn-primary" type="submit">更新</button>
+        </form>
+    </div>
 
-<script>
-    function previewImage(event) {
-        const input = event.target;
-        const preview = document.getElementById('preview');
+    <!--bootstrap-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-        if (input.files && input.files[0]) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                preview.innerHTML = '<img src="' + e.target.result + '" alt="Image Preview">';
+    <!--JS-->
+    <script>
+        function previewImage(event) {
+            const input = event.target;
+            const preview = document.getElementById('preview');
+
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.innerHTML = '<img src="' + e.target.result + '" alt="Image Preview">';
+                }
+                reader.readAsDataURL(input.files[0]);
             }
-            reader.readAsDataURL(input.files[0]);
         }
-    }
 
-    document.querySelector('.toggle-password').addEventListener('click', function (e) {
-        const passwordInput = document.querySelector('#password');
-        if (passwordInput.type === 'password') {
-            passwordInput.type = 'text';
-            this.classList.add('fa-eye-slash');
-        } else {
-            passwordInput.type = 'password';
-            this.classList.remove('fa-eye-slash');
-        }
-    });
-</script>
+        document.querySelector('.toggle-password').addEventListener('click', function (e) {
+            const passwordInput = document.querySelector('#password');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                this.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                this.classList.remove('fa-eye-slash');
+            }
+        });
+    </script>
 </body>
 </html>
-

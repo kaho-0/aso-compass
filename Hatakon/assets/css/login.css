@@ -1,0 +1,94 @@
+:root {
+    --hiroblue: #0080ff;
+    --hatablue: #000080;
+    --black: #191E26;
+    --body: #78747A;
+    --bcground: #F4F6FA;
+    --LIKE: #BEE8FF;
+}
+
+body {
+    background-color: var(--bcground);
+    font-family: "Noto Sans JP", "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
+    overflow: hidden;
+}
+.error {
+    color: red;
+    font-weight: bold;
+}
+
+#animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s ease;
+}
+
+#login {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.logo {
+    max-width: 120%;
+    max-height: 100%;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+#login {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.fsize {
+    font-size: 24px;
+    font-weight: 900;
+    margin-bottom: 5px;
+}
+
+.y {
+    width: 100%;
+    color: #868686;
+}
+
+.Sign-seni{
+    text-decoration: none;
+}
+.input-field {
+    margin-bottom: 10px;
+}
+
+.container {
+    width: 550px;
+    padding: 40px;
+    margin-top: 80px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.LoginButton {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--hatablue);
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.LoginButton:hover {
+    background-color: #316ed6;
+}

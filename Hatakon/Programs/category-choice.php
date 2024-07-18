@@ -1,17 +1,46 @@
 <?php
 session_start(); // セッションの開始
 require 'db-connect.php'; // データベース接続
+?>
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asocompass</title>
+
+    <!--fontのリンク-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Advent+Pro:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+    <!--iconのリンク-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="icon" href="../assets/image/favicon.ico">
+    <!--Bootstrap5のリンク-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <!-- PHP関連読み込み -->
+    <?php require 'navbar.php'; ?> <!-- navbarのリンク -->
+    <!--style.cssに書き加えて、cssのファイル名を変更してください-->
+    <link rel="stylesheet" href="../assets/css/category-choice.css">
+    <link rel="stylesheet" href="../assets/css/profile.css">
+</head>
+<body>
+
+<?php
 $pdo = new PDO($connect, USER, PASS); // データベース接続
-$user_id = $_SESSION['customer']; // セッションユーザーのlike_idを取得
+
+if (isset($_SESSION['account']['id'])) {
+  $user_id = $_SESSION['account']['id'];
+} else {
+  // セッションユーザーが取得できない場合のエラーメッセージ
+  die('セッションが無効です。ログインしてください。');
+}
+
 
 // カテゴリーIDを取得
-$cateID = 1;
-
-                    // SELECT users.*, school_test.sNameID, category.*
-                    // FROM users
-                    // INNER JOIN school_test ON users.school_name = school_test.sId
-                    // INNER JOIN category ON users.category1 = category.cate_id
-                    // WHERE id != ? and (category1 = ? OR category2 = ? OR category3 = ?)
+$cateID = $_GET['id'];
 
 $stmt = $pdo->prepare('
         SELECT 
@@ -45,33 +74,7 @@ $cate_stmt = $pdo->prepare('
 $cate_stmt->execute([$cateID]);
 $category = $cate_stmt->fetch(PDO::FETCH_ASSOC);
 ?>
- 
-?>
 
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asocompass</title>
-
-    <!--fontのリンク-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Advent+Pro:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
-    <!--iconのリンク-->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="icon" href="../assets/image/favicon.ico">
-    <!--Bootstrap5のリンク-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <!-- PHP関連読み込み -->
-    <?php require 'navbar.php'; ?> <!-- navbarのリンク -->
-    <!--style.cssに書き加えて、cssのファイル名を変更してください-->
-    <link rel="stylesheet" href="../assets/css/category-choice.css">
-    <link rel="stylesheet" href="../assets/css/profile.css">
-</head>
-<body>
       <!--
         Top section
       -->
@@ -81,7 +84,7 @@ $category = $cate_stmt->fetch(PDO::FETCH_ASSOC);
             <div class="section">
               <div class="d-flex align-items-end">
                 <h1 class="headline">category:</h1>
-                <h1 class="headline"><?php echo htmlspecialchars($category['cate_name'], ENT_QUOTES, 'UTF-8'); ?></h1>
+                <h1 class="headline"><?php echo htmlspecialchars($category['cate_name'] ?? '未定義のカテゴリー', ENT_QUOTES, 'UTF-8'); ?></h1>
                 <div class="category-img">
                   <?php echo '<img src="../assets/image/category/', $category['cate_img'],'" alt="カテゴリー画像">'; ?>
                 </div>
@@ -150,7 +153,7 @@ $category = $cate_stmt->fetch(PDO::FETCH_ASSOC);
                 echo '<div class="card-size col-lg-4 col-sm-6 text-center">
                         <div class="account card-effect bg-white rounded-2">
                             <div class="mb-auto" onclick="openModal(' . htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8') . ')">
-                              <img src="../assets/image/account/' . htmlspecialchars($row['profile_img'], ENT_QUOTES, 'UTF-8') . '" alt="">
+                              <img src="../assets/image/profile/' . htmlspecialchars($row['profile_img'], ENT_QUOTES, 'UTF-8') . '" alt="">
                               <div class="d-flex justify-content-between">
                                   <h5 class="mb-10">',$row['nickname'],'</h5>
                                   <p class="mb-0">',$row['sNameID'],'</p>
@@ -160,8 +163,9 @@ $category = $cate_stmt->fetch(PDO::FETCH_ASSOC);
                               </div>
                             </div>
 
-                            <form method="post" action="category-choice.php" class="likeForm mb-0">
+                            <form method="post" action="category-choice.php?id=' . $cateID. '" class="likeForm">
                                 <input type="hidden" name="like_id" value="' . htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8') . '">
+                                <input type="hidden" name="cate_id" value="' . htmlspecialchars($cateID, ENT_QUOTES, 'UTF-8') . '">
                                 <input type="hidden" name="token" value="',$token,'">';
                               if ($liked) {
                                   echo '<button type="submit" name="unlike" class="button-delete">Cancel</button>';
@@ -177,7 +181,7 @@ $category = $cate_stmt->fetch(PDO::FETCH_ASSOC);
                             echo '<div class="profile-contents">';
                                 echo '<div class="header-profile">';
                                     echo '<div class="d-flex">';
-                                      echo '<img src="../assets/image/account/' . htmlspecialchars($row['profile_img'], ENT_QUOTES, 'UTF-8') . '" alt="User Icon" width="320" height="180">';
+                                      echo '<img src="../assets/image/profile/' . htmlspecialchars($row['profile_img'], ENT_QUOTES, 'UTF-8') . '" alt="User Icon" width="320" height="180">';
                                       echo '<div class ="header-tent">';
                                           echo '<div class="username">', (isset($row['nickname']) ? htmlspecialchars($row['nickname'], ENT_QUOTES, 'UTF-8') : ''), '</div>';
                                           echo '<div class="category">
@@ -203,13 +207,14 @@ $category = $cate_stmt->fetch(PDO::FETCH_ASSOC);
                                   echo '<h2>学校</h2>';
                                   echo '<p>', (isset($row['sName']) ? htmlspecialchars($row['sName'], ENT_QUOTES, 'UTF-8') : ''), '</p>';
                                   echo '<hr>';
-                                  echo '<h2>性格タイプ</h2>';
+                                  echo '<h2>タイプ</h2>';
                                   echo '<p>', (isset($row['character_type']) ? htmlspecialchars($row['character_type'], ENT_QUOTES, 'UTF-8') : ''), '</p>';
                                   echo '<hr>';
 
                                   echo '<div class="plofile-likeForm">';
-                                    echo '<form method="post" action="category-choice.php" class="likeForm">
+                                     echo '<form method="post" action="category-choice.php?id=' . $cateID . '" class="likeForm">
                                             <input type="hidden" name="like_id" value="' . htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8') . '">
+                                            <input type="hidden" name="cate_id" value="' . htmlspecialchars($cateID, ENT_QUOTES, 'UTF-8') . '">
                                             <input type="hidden" name="token" value="',$token,'">';
                                           if ($liked) {
                                               echo '<button type="submit" name="unlike" class="button-delete">Cancel</button>';

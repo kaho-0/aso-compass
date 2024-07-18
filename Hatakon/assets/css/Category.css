@@ -1,3 +1,9 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+}
 body {
   font-family: Arial, sans-serif;
   background-color: #f5f5f5;
@@ -6,16 +12,27 @@ body {
   justify-content: center;
   align-items: flex-start; /* align items to the top */
 }
-
+header {
+  display: flex;
+  display: inline-block;
+  justify-content: center;
+  padding-bottom: 145px;
+}
+header .container {
+  background-color: inherit;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+}
 .container {
   background-color: #fff;
   padding: 40px;
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  display: inline-block;
   width: 80%;
   max-width: 1200px;
-  margin-top: 20px; /* Add margin to the top */
-  min-height: calc(100vh - 40px); /* Ensure container takes at least the full height of the viewport */
+  margin-bottom: 40px;
 }
 
 .category-title {

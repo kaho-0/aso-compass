@@ -25,11 +25,11 @@ require 'db-connect.php';
 </head>
 <body>
     <div class="row">
-        <h1><div class="likes-text">Likes</div></h1>
+    <div class="likes-text"><h1>Likes</h1></div>
         <div class="slider-contents">
-            <?php
+        <?php
                 $pdo = new PDO($connect, USER, PASS);
-                $user_id = $_SESSION['customer'];
+                $user_id = $_SESSION['account']['id'];
                 $sql = $pdo->prepare('SELECT `like`.*, users.*,school_test.*
                                       FROM `like`
                                       INNER JOIN users ON `like`.id = users.id
@@ -43,12 +43,12 @@ require 'db-connect.php';
                   $stmt->execute([$user_id, $like_id]);
                   $stmt = $pdo->prepare('DELETE from `like` where (id=? and like_id=?) or (id=? and like_id=?)');
                   $stmt->execute([$user_id, $like_id,$like_id,$user_id]);
-                
+                 
                 }                  
                 foreach ($sql as $row) {
                     echo '<div class="card-size col-lg-4 col-sm-6 text-center">
                           <div class="account card-effect bg-white rounded-2">
-                            <img src="../assets/image/account/' . $row['profile_img'] . '" alt="">
+                            <img src="../assets/image/profile/' . $row['profile_img'] . '" alt="">
                             <div class="d-flex justify-content-between">
                               <h5 class="mb-10">' . $row['nickname'] . '</h5>
                               <p class="mb-0">' . $row['sNameID'] . '</p>
@@ -62,7 +62,7 @@ require 'db-connect.php';
                             </form>
                           </div>
                         </div>';    
-                }
+                }   
             ?>
         </div>
         <div class="line-container"></div>
