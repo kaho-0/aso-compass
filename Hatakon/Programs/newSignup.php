@@ -93,7 +93,7 @@ $pdo = null;
 <body>
     <br>
     <div class="title-cnrainer">
-    <a href="javascript:history.back()" class="back-link">← 戻る</a>
+    <a href="login.php" class="back-link">← 戻る</a>
 </div>
     <div class="title-H">
         <h2>アカウント情報</h2>
@@ -107,12 +107,13 @@ $pdo = null;
                     写真を選択する
                 </label>
             </div>
+            <div class="y">氏名は本名を、Passwordは半角英数字で入力してください。</div>
             <div class="form-floating">
                 <input type="text" name="name" class="form-control" id="name" placeholder="氏名" maxlength="20">
                 <label for="name">氏名</label>
             </div>
             <div class="form-floating">
-                <input type="text" name="student_number" class="form-control" id="student_number" placeholder="学籍番号" maxlength="10">
+                <input type="text" name="student_number" class="form-control" id="student_number" placeholder="学籍番号" maxlength="9">
                 <label for="student_number">学籍番号</label>
             </div>
             <div class="form-floating">

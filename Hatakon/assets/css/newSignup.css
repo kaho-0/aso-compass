@@ -42,7 +42,11 @@
         .LoginButton:hover {
             background-color: #316ed6;
         }
-
+        .y {
+            width: 100%;
+            color: #868686;
+            margin-left: auto;
+        }
         /* 画像表示 */
         #preview {
             width: 100px;
