@@ -125,7 +125,7 @@ $pdo = null;
                 <label for="name">氏名</label>
             </div>
             <div class="form-floating">
-                <input type="text" name="student_number" class="form-control" id="student_number" placeholder="学籍番号" maxlength="10">
+                <input type="text" name="student_number" class="form-control" id="student_number" placeholder="学籍番号" maxlength="9">
                 <label for="student_number">学籍番号</label>
             </div>
             <div class="form-floating">
