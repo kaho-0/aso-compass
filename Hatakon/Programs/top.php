@@ -119,7 +119,7 @@ require 'db-connect.php'; // データベース接続
                 echo '<div class="card-size col-lg-4 col-sm-6 text-center">
                         <div class="account card-effect bg-white rounded-2">
                             <div class="mb-auto" onclick="openModal(' . htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8') . ')">
-                              <img src="../assets/image/account/' . htmlspecialchars($row['profile_img'], ENT_QUOTES, 'UTF-8') . '" alt="">
+                              <img src="../assets/image/profile/' . htmlspecialchars($row['profile_img'], ENT_QUOTES, 'UTF-8') . '" alt="">
                               <div class="d-flex justify-content-between">
                                   <h5 class="mb-10">',$row['nickname'],'</h5>
                                   <p class="mb-0">',$row['sNameID'],'</p>
