@@ -1,4 +1,4 @@
-html, body {
+/* html, body {
   height: 100%;
   margin: 0;
   padding: 0;
@@ -11,9 +11,9 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
+} */
 
-header {
+/* header {
   display: flex;
   display: inline-block;
   justify-content: center;
@@ -25,14 +25,22 @@ header .container {
   padding: 0;
   border: none;
   box-shadow: none;
+} */
+
+body{
+  background-color: var(--bcground);
+  font-family:"Noto Sans JP", "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
+  color:var(--black);
 }
-.container {
+
+.categorycheck-container{
   background-color: #fff;
   padding: 40px;
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   width: 80%;
   max-width: 1200px;
+  margin-top: 100px;
   margin-bottom: 40px;
   text-align: center;
 }
@@ -43,7 +51,7 @@ header .container {
   margin-bottom: 40px;
 }
 
-.grid {
+.categorycheck-grid{
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
@@ -83,6 +91,6 @@ header .container {
   text-align: center;
   margin-top: 20px;
 }
-.btn {
+.check-btn {
   width: 150px;
 }

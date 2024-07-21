@@ -28,9 +28,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // ファイルのアップロード処理
     if (isset($_FILES['account_img']) && $_FILES['account_img']['error'] === UPLOAD_ERR_OK) {
         $temp_name = $_FILES['account_img']['tmp_name'];
-        $upload_dir = '../img/profile/';
+        $upload_dir = '../assets/image/account/';
         $filename = uniqid() . '_' . basename($_FILES['account_img']['name']);
-        $account_img = $upload_dir . $filename;
+        $account_img = $upload_dir . $filename; 
 
         // ディレクトリが存在しない場合は作成する
         if (!file_exists($upload_dir)) {
@@ -81,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':student_number', $student_number);
-        $stmt->bindParam(':account_img', $account_img);
+        $stmt->bindParam(':account_img', $filename);
         $stmt->bindParam(':id', $user_id);
 
         // プリペアドステートメントを実行
@@ -122,7 +122,7 @@ $pdo = null;
         <form method="POST" enctype="multipart/form-data" action="changeSignup.php">
             <div class="image-upload-container">
                 <div id="preview">
-                    <img src="<?php echo htmlspecialchars($user['account_img']); ?>" alt="Current Profile Image">
+                    <img src="<?php echo htmlspecialchars('../assets/image/account/' . $user['account_img']); ?>" alt="Current Profile Image">
                 </div>
                 <label class="fileUploadBtn">
                     <input type="file" id="fileInput" name="account_img" onchange="previewImage(event)" accept="image/*" style="display: none;">写真を選択する
