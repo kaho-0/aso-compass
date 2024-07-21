@@ -23,7 +23,7 @@ require 'db-connect.php';
     <?php require 'navbar.php'; ?>
 </header>
 <body>
-<div class="container">
+<div class="container categorycheck-container">
     <div class="category-title">Categorychoose</div>
 <?php
     $pdo = new PDO($connect, USER, PASS);
@@ -35,12 +35,20 @@ require 'db-connect.php';
     $stmt->execute([$user_id]);
     $userCategories = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    $userCategoryIds = array_filter([$userCategories['category1'], $userCategories['category2'], $userCategories['category3']]);
+    $userCategoryIds = [];
+    if ($userCategories) {
+        $userCategoryIds = array_filter([$userCategories['category1'], 
+                                         $userCategories['category2'], 
+                                         $userCategories['category3']]);
+    }
 
     if (isset($_POST['categorycheck'])) {
     // 取得
-        $selectedCategories = $_POST['categories'];
-
+        if(isset($_POST['categories'])){
+            $selectedCategories = $_POST['categories'];
+        } else {
+            $selectedCategories = null;
+        }
         $category1 = isset($selectedCategories[0]) ? $selectedCategories[0] : null;
         $category2 = isset($selectedCategories[1]) ? $selectedCategories[1] : null;
         $category3 = isset($selectedCategories[2]) ? $selectedCategories[2] : null;
@@ -57,7 +65,7 @@ require 'db-connect.php';
     ?>
 
     <form action="categorycheck.php" method="POST">
-        <div class="grid">
+        <div class="grid categorycheck-grid">
             <?php
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $imgSrc = "../assets/image/category/" . $row['cate_img'];
@@ -71,7 +79,7 @@ require 'db-connect.php';
         ?>
         </div>
     <div class="button-container">
-        <button type="submit" class="btn btn-primary" name="categorycheck">登録</button>
+        <button type="submit" class="check-btn btn btn-primary " name="categorycheck">登録</button>
     </div>
 </form></div>
 <script>
