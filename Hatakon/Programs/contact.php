@@ -152,18 +152,18 @@ require 'db-connect.php'; // データベース接続
       </section>
       <script>
         function copyToClipboard() {
-            // コピー対象をJavaScript上で変数として定義する
-            var copyTarget = document.getElementById("copyTarget");
-
-            // コピー対象のテキストを選択する
-            copyTarget.select();
-
-            // 選択しているテキストをクリップボードにコピーする
-            document.execCommand("Copy");
-
-            // コピーをお知らせする
-            alert("学籍番号をコピーしました : " + copyTarget.value);
-        }
+        // コピー対象のテキストを取得する
+        var copyTarget = document.getElementById("copyTarget").value;
+ 
+        // コピー対象のテキストをクリップボードにコピーする
+        navigator.clipboard.writeText(copyTarget).then(function() {
+            // コピーが成功したことをお知らせする
+            alert("学籍番号をコピーしました: " + copyTarget);
+        }).catch(function(err) {
+            // コピーが失敗した場合のエラーメッセージを表示する
+            console.error("学籍番号のコピーに失敗しました", err);
+        });
+    }
 
         function openModal(id) {
             document.getElementById('userModal-' + id).style.display = 'block';

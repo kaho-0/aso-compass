@@ -72,7 +72,7 @@ if (isset($_POST['student_number']) && isset($_POST['password'])) {
                     <label for="student_number">学籍番号</label>
                 </div>
                 <div class="form-floating">
-                    <input type="password" name="password" class="form-control" id="password" placeholder="Password" maxlength="10" required>
+                    <input type="password" name="password" class="form-control" id="password" placeholder="Password" maxlength="40" required>
                     <label for="password">Password</label>
                 </div>
                 <div class="my-3">
