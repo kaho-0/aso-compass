@@ -23,7 +23,7 @@ require 'db-connect.php';
     <?php require 'navbar.php'; ?>
 </header>
 <body>
-<div class="container">
+<div class="container category-container">
         <div class="category-title">Category</div>
         <div class="grid">
             <?php

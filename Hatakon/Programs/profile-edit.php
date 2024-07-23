@@ -100,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_POST['introduce'],
             $_POST['hobby'],
             $_POST['character_type'],
-            $_FILES['profile_img']['name'],
+            $profile_img,
             $_POST['nickname']]);
     }
         
@@ -154,7 +154,7 @@ $id = $school_name = $school_department = $school_major = $school_course = $scho
         echo '<img id="profile_img" src="../assets/image/profile/' . htmlspecialchars($user['profile_img'], ENT_QUOTES, 'UTF-8') . '" alt="アカウントの画像" width="344" height="190">';
     } else {
             echo '<img id="profile_img" src="https://via.placeholder.com/50" alt="User Icon" width="344" height="190">';
-        }        
+        }       
         echo '<input type="file" id="fileInput" name="profile_img" onchange="previewImage(event)" accept="image/*" style="display: none;">';
         echo '</label>';
         echo '</div>';

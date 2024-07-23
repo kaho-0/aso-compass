@@ -40,6 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // ファイルの保存
         if (!move_uploaded_file($temp_name, $account_img)) {
             $error = "エラー: 画像のアップロードに失敗しました！";
+            $filename = $user['account_img']; // アップロードに失敗した場合も元の画像を使用
         }
     } elseif (isset($_FILES['account_img']) && $_FILES['account_img']['error'] !== UPLOAD_ERR_NO_FILE) {
         $error = "エラー: 画像のアップロードに失敗しました！";
