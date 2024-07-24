@@ -1,18 +1,18 @@
-html, body {
+/* html, body {
   height: 100%;
   margin: 0;
   padding: 0;
   overflow: auto;
-}
-body {
+} */
+/* body {
   font-family: Arial, sans-serif;
   background-color: #f5f5f5;
   margin: 0;
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* align items to the top */
-}
-header {
+  align-items: flex-start;
+}*/
+/* header {
   display: flex;
   display: inline-block;
   justify-content: center;
@@ -23,15 +23,21 @@ header .container {
   padding: 0;
   border: none;
   box-shadow: none;
+} */
+body{
+  background-color: var(--bcground);
+  font-family:"Noto Sans JP", "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
+  color:var(--black);
 }
-.container {
+
+.category-container{
   background-color: #fff;
   padding: 40px;
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  display: inline-block;
   width: 80%;
   max-width: 1200px;
+  margin-top: 100px;
   margin-bottom: 40px;
 }
 

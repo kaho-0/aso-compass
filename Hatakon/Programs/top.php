@@ -119,7 +119,7 @@ require 'db-connect.php'; // データベース接続
                 echo '<div class="card-size col-lg-4 col-sm-6 text-center">
                         <div class="account card-effect bg-white rounded-2">
                             <div class="mb-auto" onclick="openModal(' . htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8') . ')">
-                              <img src="../assets/image/account/' . htmlspecialchars($row['profile_img'], ENT_QUOTES, 'UTF-8') . '" alt="">
+                              <img src="../assets/image/profile/' . htmlspecialchars($row['profile_img'], ENT_QUOTES, 'UTF-8') . '" alt="">
                               <div class="d-flex justify-content-between">
                                   <h5 class="mb-10">',$row['nickname'],'</h5>
                                   <p class="mb-0">',$row['sNameID'],'</p>
@@ -146,7 +146,7 @@ require 'db-connect.php'; // データベース接続
                             echo '<div class="profile-contents">';
                                 echo '<div class="header-profile">';
                                     echo '<div class="d-flex">';
-                                      echo '<img src="../assets/image/account/' . htmlspecialchars($row['profile_img'], ENT_QUOTES, 'UTF-8') . '" alt="User Icon" width="320" height="180">';
+                                      echo '<img src="../assets/image/profile/' . htmlspecialchars($row['profile_img'], ENT_QUOTES, 'UTF-8') . '" alt="User Icon" width="320" height="180">';
                                       echo '<div class ="header-tent">';
                                           echo '<div class="username">', (isset($row['nickname']) ? htmlspecialchars($row['nickname'], ENT_QUOTES, 'UTF-8') : ''), '</div>';
                                           echo '<div class="category">
@@ -192,24 +192,6 @@ require 'db-connect.php'; // データベース接続
                 echo '</div>';
               }
             ?>
-            <?php
-            for($i=1; $i<=7; $i++){
-              echo '<div class="card-size col-lg-4 col-sm-6 text-center">
-                      <div class="account card-effect bg-white rounded-2">
-                        <img src="../assets/image/account/account1.png" alt="">
-                        <div class="d-flex justify-content-between">
-                          <h5 class="mb-10">Kotarou</h5>
-                          <p class="mb-0">SD3E</p>
-                        </div>
-                        <div class="d-flex justify-content-start mb-auto">
-                          <h6>こんにちは、よろしく！</h6>
-                        </div>
-                        <button class="button-insert">Like</button>
-                      </div>
-                    </div>';
-            }
-            ?>
-
           </div>
         </div>
 

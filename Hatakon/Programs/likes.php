@@ -29,22 +29,26 @@ require 'db-connect.php';
         <div class="slider-contents">
         <?php
                 $pdo = new PDO($connect, USER, PASS);
-                $user_id = $_SESSION['account']['id'];
+                $user_id = $_SESSION['account']['id'];        
+                        
+                if (isset($_POST['like_button'])){
+                  $like_id = $_POST['like_id'];
+ 
+                  //contactテーブルに追加
+                  $stmtInsert = $pdo->prepare('INSERT INTO `contact` (id_a, id_b) VALUES (?, ?)');
+                  $stmtInsert->execute([$user_id, $like_id]);
+                  //likeテーブルから削除
+                  $stmtDelete = $pdo->prepare('DELETE from `like` where (id=? and like_id=?) or (id=? and like_id=?)');
+                  $stmtDelete->execute([$user_id, $like_id,$like_id,$user_id]);
+                 
+                }
                 $sql = $pdo->prepare('SELECT `like`.*, users.*,school_test.*
                                       FROM `like`
                                       INNER JOIN users ON `like`.id = users.id
                                       INNER JOIN school_test ON users.school_name = school_test.sId
                                       WHERE `like`.like_id = ?;
                                   ');
-                $sql->execute([$user_id]);                  
-                if (isset($_POST['like_button'])){
-                  $like_id = $_POST['like_id'];
-                  $stmt = $pdo->prepare('INSERT INTO `contact` (id_a, id_b) VALUES (?, ?)');
-                  $stmt->execute([$user_id, $like_id]);
-                  $stmt = $pdo->prepare('DELETE from `like` where (id=? and like_id=?) or (id=? and like_id=?)');
-                  $stmt->execute([$user_id, $like_id,$like_id,$user_id]);
-                 
-                }                  
+                $sql->execute([$user_id]);                                 
                 foreach ($sql as $row) {
                     echo '<div class="card-size col-lg-4 col-sm-6 text-center">
                           <div class="account card-effect bg-white rounded-2">
